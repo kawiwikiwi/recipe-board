@@ -16,13 +16,6 @@
                     <p class="text-2xl">Recipe Board</p>
                 </div>
             </a>
-            
-
-            <flux:navbar class="-mb-px max-lg:hidden">
-                <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                    {{ __('Dashboard') }}
-                </flux:navbar.item>
-            </flux:navbar>
 
             <flux:spacer />
 
@@ -35,7 +28,8 @@
                     <flux:navbar.item
                         class="h-10 max-lg:hidden [&>div>svg]:size-5"
                         icon="heart"
-                        href="#"
+                        :href="route('recipes.saved')"
+                        wire:navigate
                         label="Saved Recipes"
                     />
                 </flux:tooltip>
@@ -44,7 +38,8 @@
                     <flux:navbar.item
                         class="h-10 max-lg:hidden [&>div>svg]:size-5"
                         icon="book-open-text"
-                        href="{{ route('recipes.index') }}"
+                        :href="route('recipes.index')"
+                        wire:navigate
                         label="My Recipes"
                     />
                 </flux:tooltip>

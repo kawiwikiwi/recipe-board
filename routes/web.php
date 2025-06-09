@@ -7,9 +7,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Volt::route('dashboard', 'dashboard')->name('dashboard');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Volt::route('my-recipes', 'recipes.index')->name('recipes.index');
+    Volt::route('my-recipes/create', 'recipes.create')->name('recipes.create');
+    Volt::route('saved-recipes', 'recipes.saved')->name('recipes.saved');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
@@ -18,8 +24,5 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
-
-Route::resource('recipes', \App\Http\Controllers\RecipeController::class)
-    ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
