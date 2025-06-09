@@ -27,36 +27,44 @@ new #[Layout('components.layouts.app')] class extends Component {
             </flux:button>
         </div>
 
-        <form>
+        <form class="grid grid-cols-1 gap-10">
             <div class="grid grid-cols-1 gap-6">
+                <div>
+                    <h1 class="text-xl">Recipe Basics</h1>
+                </div>
 
                 <div class="grid grid-cols-9 gap-5">
                     <flux:input.group class="col-span-7 grid gap-2">
-                        <flux:label>Recipe Title</flux:label>
-                        <flux:input
-                            wire:model="name"
-                            type="text"
-                            required
-                            autofocus
-                            autocomplete="Recipe Title"
-                            :placeholder="__('Recipe Title')"
-                        />
+                        <div class="grid gap-2">
+                            <flux:label>Recipe Title</flux:label>
+                            <flux:input
+                                wire:model="name"
+                                type="text"
+                                required
+                                autofocus
+                                autocomplete="Recipe Title"
+                                :placeholder="__('Recipe Title')"
+                            />
+                        </div>
                     </flux:input.group>
 
                     <flux:input.group class="col-span-1 grid gap-2">
-                        <flux:label>Makes</flux:label>
-                        <flux:input
-                            wire:model="makes"
-                            type="number"
-                            required
-                            autofocus
-                            autocomplete="4"
-                            :placeholder="__('4')"
-                        />
+                        <div class="grid gap-2">
+                            <flux:label>Makes</flux:label>
+                            <flux:input
+                                wire:model="makes"
+                                type="number"
+                                required
+                                autofocus
+                                autocomplete="4"
+                                :placeholder="__('4')"
+                            />
+                        </div>
                     </flux:input.group>
 
                     <flux:input.group class="col-span-1 grid gap-2">
-                        <flux:label>Serves</flux:label>
+                        <div class="grid gap-2">
+                            <flux:label>Serves</flux:label>
                         <flux:input
                             wire:model="serves"
                             type="number"
@@ -65,26 +73,13 @@ new #[Layout('components.layouts.app')] class extends Component {
                             autocomplete="4"
                             :placeholder="__('4')"
                         />
-                    </flux:input.group>
-                </div>
-
-                <div class="grid grid-cols-1 gap-10">
-                    <flux:input.group class="grid gap-2">
-                        <flux:label>Description</flux:label>
-                        <flux:textarea
-                            wire:model="description"
-                            type="text"
-                            required
-                            autofocus
-                            autocomplete="Description"
-                            :placeholder="__('Description about my recipe...')"
-                            class="h-full"
-                        />
+                        </div>
                     </flux:input.group>
                 </div>
 
                 <div class="grid grid-cols-3 gap-10">
-                        <flux:input.group class="grid gap-2">
+                    <flux:input.group class="grid gap-2">
+                        <div class="grid gap-2">
                             <flux:label>Cook Time</flux:label>
                             <flux:input
                                 wire:model="cook_time"
@@ -94,21 +89,25 @@ new #[Layout('components.layouts.app')] class extends Component {
                                 autocomplete="01:30"
                                 :placeholder="__('01:30')"
                             />
-                        </flux:input.group>
+                        </div>
+                    </flux:input.group>
 
-                        <flux:input.group class="grid gap-2">
+                    <flux:input.group class="grid gap-2">
+                        <div class="grid gap-2">
                             <flux:label>Preparation Time</flux:label>
-                            <flux:input
-                                wire:model="prep_time"
-                                type="time"
-                                required
-                                autofocus
-                                autocomplete="01:30"
-                                :placeholder="__('01:30')"
-                            />
-                        </flux:input.group>
+                        <flux:input
+                            wire:model="prep_time"
+                            type="time"
+                            required
+                            autofocus
+                            autocomplete="01:30"
+                            :placeholder="__('01:30')"
+                        />
+                        </div>
+                    </flux:input.group>
 
-                        <flux:input.group class="grid gap-2">
+                    <flux:input.group class="grid gap-2">
+                        <div class="grid gap-2">
                             <flux:label>Additional Time</flux:label>
                             <flux:input
                                 wire:model="additional_time"
@@ -118,12 +117,33 @@ new #[Layout('components.layouts.app')] class extends Component {
                                 autocomplete="01:30"
                                 :placeholder="__('01:30')"
                             />
-                        </flux:input.group>
-                    </div>
+                        </div>
+                    </flux:input.group>
+                </div>
 
+                <div class="grid grid-cols-1 gap-10">
+                    <flux:input.group class="grid gap-2">
+                        <div class="grid gap-2">
+                            <flux:label>Description</flux:label>
+                            <flux:textarea
+                                wire:model="description"
+                                type="text"
+                                required
+                                autofocus
+                                autocomplete="Description"
+                                :placeholder="__('Write a description for your recipe')"
+                                class="h-full"
+                            />
+                        </div>
+                    </flux:input.group>
+                </div>
+            </div>
 
-
-
+            <div class="grid grid-cols-1 gap-6">
+                <div class="grid grid-cols-1 gap-6">
+                    <h1 class="text-xl">Ingredients</h1>
+                    <livewire:components.ingredient-list/>
+                </div>
             </div>
 
         <!-- 'prep_time',
