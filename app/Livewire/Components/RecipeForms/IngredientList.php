@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components;
+namespace App\Livewire\Components\RecipeForms;
 
 use Livewire\Component;
 
@@ -15,7 +15,7 @@ class IngredientList extends Component
     
     public function render()
     {
-        return view('livewire.components.ingredient-list');
+        return view('livewire.components.recipe-forms.ingredient-list');
     }
 
     public function addIngredient()

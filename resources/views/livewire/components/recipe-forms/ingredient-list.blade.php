@@ -1,4 +1,3 @@
-
 <div class="grid grid-cols-1 gap-4">
     <div class="grid grid-cols-3 mr-10">
         <flux:label>Ingredient</flux:label>
