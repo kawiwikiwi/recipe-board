@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components;
+namespace App\Livewire\Components\RecipeForms;
 
 use Livewire\Component;
 
@@ -26,6 +26,6 @@ class CreateListItem extends Component
 
     public function render()
     {
-        return view('livewire.components.create-list-item');
+        return view('livewire.components.recipe-forms.create-list-item');
     }
 }

@@ -1,5 +1,5 @@
 <div class="grid grid-cols-1 gap-4">
-    <div class="grid grid-cols-3 mr-10">
+    <div class="grid grid-cols-3 mr-12">
         <flux:label>Ingredient</flux:label>
         <flux:label>Amount</flux:label>
         <flux:label>Unit</flux:label>
@@ -7,7 +7,7 @@
     @if (!empty($added_ingredient))
         <div class="grid grid-cols-1 gap-4">
             @foreach($added_ingredient as $index => $item)
-                <livewire:components.create-list-item
+                <livewire:components.recipe-forms.create-list-item
                     :ingredient="$item['ingredient']"
                     :amount="$item['amount']"
                     :unit="$item['unit']"
@@ -44,7 +44,7 @@
                 autocomplete="01:30"
                 :placeholder="__('kg')"
             />
-            <flux:button class="px-2" icon="plus" wire:click="addIngredient"></flux:button>
+            <flux:button class="px-6 h-full" icon="plus" wire:click="addIngredient"></flux:button>
         </flux:input.group>
     </flux:field>
 </div>

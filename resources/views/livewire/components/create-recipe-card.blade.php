@@ -1,4 +1,4 @@
-<div class="bg-white">
+<div class="bg-white shadow-lg">
     <div class="bg-accent max-w-fit px-4 py-2 rounded-br-3xl">
         <h1 class="text-xl text-white mr-1"> {{ $title }} </h1>
     </div>
