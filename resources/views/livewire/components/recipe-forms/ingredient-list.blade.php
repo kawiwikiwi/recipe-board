@@ -44,7 +44,7 @@
                 autocomplete="01:30"
                 :placeholder="__('kg')"
             />
-            <flux:button class="px-6 h-full" icon="plus" wire:click="addIngredient"></flux:button>
+            <flux:button class="px-6 h-full text-white" icon="plus" variant="primary" wire:click="addIngredient"></flux:button>
         </flux:input.group>
     </flux:field>
 </div>

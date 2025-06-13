@@ -12,10 +12,12 @@
                         autofocus
                         autocomplete="01:30"
                         :placeholder="__('Title')"
-                        class:input="border-b-0 rounded-b-none"
+                        class:input="border-b-0 rounded-b-none text-lg! font-semibold"
                     />
-                    <flux:button icon="plus" class="px-6 border-b-0 rounded-b-none"></flux:button>
+                    <flux:button icon="plus" variant="primary" class="px-6 border-b-0 rounded-b-none text-white"></flux:button>
                 </flux:input.group>
+
+                <flux:separator />
 
                 <flux:textarea
                     wire:model="instructions"

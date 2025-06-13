@@ -16,7 +16,7 @@
                 :value="$unit"
                 readonly 
             />
-            <flux:button class="px-2" icon="x-mark" color="danger" wire:click="remove"></flux:button>
+            <flux:button class="px-6" variant="danger" icon="x-mark" wire:click="remove"></flux:button>
         </flux:input.group>
     </flux:field>
 </div>

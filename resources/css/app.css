@@ -23,6 +23,30 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
+    --color-accent-50:  #fff5f6;
+    --color-accent-100: #ffe5e8;
+    --color-accent-200: #ffcbd1;
+    --color-accent-300: #ff9ea8;
+    --color-accent-400: #f87b8b;
+    --color-accent-500: #DD707C;   /* Base */
+    --color-accent-600: #c15f6a;
+    --color-accent-700: #a14d57;
+    --color-accent-800: #7d3a41;
+    --color-accent-900: #5a2830;
+    --color-accent-950: #3a181d;
+
+    --color-alternate-50:  #f8fae7;
+    --color-alternate-100: #f1f6ce;
+    --color-alternate-200: #e2ec9d;
+    --color-alternate-300: #cfe06d;
+    --color-alternate-400: #bcc94e;
+    --color-alternate-500: #B2BC62;
+    --color-alternate-600: #8d974b;
+    --color-alternate-700: #6b7338;
+    --color-alternate-800: #4a5027;
+    --color-alternate-900: #2e3117;
+    --color-alternate-950: #181a0b;
+
     --color-accent: #DD707C;
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
@@ -32,7 +56,7 @@
 
 @layer theme {
     .dark {
-        --color-accent: var(--color-white);
+        --color-accent: #DD707C;
         --color-accent-content: var(--color-white);
         --color-accent-foreground: var(--color-neutral-800);
     }
@@ -55,6 +79,10 @@
 
 [data-flux-label] {
     @apply  !mb-0 !leading-tight;
+}
+
+html {
+    font-size: 18px;
 }
 
 
