@@ -1,3 +1,15 @@
+<?php
+
+use Livewire\Volt\Component;
+
+new class extends Component
+{
+    public function render(): mixed
+    {
+        return view('livewire.components.recipe-forms.basics');
+    }
+}?>
+
 <div class="grid grid-cols-1 gap-6">
     <div class="grid grid-cols-9 gap-5">
         <flux:input.group class="col-span-7 grid gap-2">
