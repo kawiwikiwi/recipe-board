@@ -26,6 +26,6 @@ $classes = Flux::classes()
 @endphp
 
 <div {{ $attributes->class($classes) }} data-flux-checkbox-indicator>
-    <flux:icon.check variant="micro" class="hidden text-[var(--color-accent-foreground)]" />
-    <flux:icon.minus variant="micro" class="hidden text-[var(--color-accent-foreground)]" />
+    <flux:icon.check variant="micro" class="hidden text-white" />
+    <flux:icon.minus variant="micro" class="hidden text-white" />
 </div>

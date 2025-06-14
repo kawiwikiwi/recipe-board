@@ -11,10 +11,9 @@ class Recipe extends Model
         'description',
         'prep_time',
         'cook_time',
-        'additional_time',
+        'difficulty',
         'total_time',
         'servings',
-        'instructions',
         'makes'
     ];
 

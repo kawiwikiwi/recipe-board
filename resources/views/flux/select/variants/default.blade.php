@@ -39,6 +39,7 @@ $classes = Flux::classes()
     data-flux-control
     data-flux-select-native
     data-flux-group-target
+    
 >
     <?php if ($placeholder): ?>
         <option value="" disabled selected class="placeholder">{{ $placeholder }}</option>

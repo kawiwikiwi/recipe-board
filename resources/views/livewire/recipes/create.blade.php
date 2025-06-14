@@ -31,6 +31,7 @@ new #[Layout('components.layouts.app')] class extends Component {
             <livewire:components.create-recipe-card title="Recipe Basics" type="basics"/>
             <livewire:components.create-recipe-card title="Ingredients" type="ingredients" />
             <livewire:components.create-recipe-card title="Instructions" type="instructions" />
+            <livewire:components.create-recipe-card title="Tags" type="tags" />
         </form>
     </div>
 </div>

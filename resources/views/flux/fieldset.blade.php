@@ -17,7 +17,7 @@ $classes = Flux::classes()
     ->add('[&>[data-flux-field]:last-child]:mb-0!')
 
     // Adjust spacing below legend...
-    ->add('[&>legend]:mb-4')
+    ->add('[&>legend]:mb-2')
     ->add('[&>legend:has(+[data-flux-description])]:mb-2')
 
     // Adjust spacing below description...

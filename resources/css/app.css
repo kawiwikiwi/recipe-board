@@ -58,7 +58,7 @@
     .dark {
         --color-accent: #DD707C;
         --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
+        --color-accent-foreground: var(--color-white);
     }
 }
 
@@ -81,6 +81,8 @@
     @apply  !mb-0 !leading-tight;
 }
 
+
+
 html {
     font-size: 18px;
 }
@@ -89,7 +91,7 @@ html {
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+    @apply outline-hidden ring-1 ring-accent ring-offset-1 ring-offset-transparent;
 }
 
 /* \[:where(&)\]:size-4 {

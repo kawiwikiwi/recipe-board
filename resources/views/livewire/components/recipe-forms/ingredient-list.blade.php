@@ -9,36 +9,62 @@ new class extends Component
     public $unit;
     public $added_ingredient = [];
     public $index;
-    protected $listeners = ['removeIngredient'];
+    public $editingIndex = null;
+
+    protected $listeners = ['editIngredient', 'saveIngredient', 'cancelEdit', 'removeIngredient', 'addIngredient'];
     
     public function render(): mixed
     {
         return view('livewire.components.recipe-forms.ingredient-list');
     }
 
-    public function addIngredient()
+    public function addIngredient($ingredient)
     {
         $this->added_ingredient[] = [
-            'ingredient' => $this->ingredient,
-            'amount' => $this->amount,
-            'unit' => $this->unit,
+            'ingredient' => $ingredient['ingredient'],
+            'amount' => $ingredient['amount'],
+            'unit' => $ingredient['unit'],
         ];
-
-        // Clear input fields
-        $this->ingredient = '';
-        $this->amount = '';
-        $this->unit = '';
     }
+   
 
     public function removeIngredient($index)
     {
         unset($this->added_ingredient[$index]);
         $this->added_ingredient = array_values($this->added_ingredient);
+
+        // Adjust the editing index if necessary
+        if ($this->editingIndex === $index) {
+            $this->editingIndex = null;
+        } elseif ($this->editingIndex > $index) {
+            $this->editingIndex--;
+        }
+    }
+
+    public function editIngredient($index)
+    {
+        $this->editingIndex = $index;
+    }
+
+    public function saveIngredient($index, $ingredient, $amount, $unit)
+    {
+        $this->added_ingredient[$index] = [
+            'ingredient' => $ingredient,
+            'amount' => $amount,
+            'unit' => $unit,
+        ];
+
+        $this->editingIndex = null;
+    }
+
+    public function cancelEdit()
+    {
+        $this->editingIndex = null;
     }
 }?>
 
 <div class="grid grid-cols-1 gap-4">
-    <div class="grid grid-cols-3 mr-12">
+    <div class="grid grid-cols-3">
         <flux:label>Ingredient</flux:label>
         <flux:label>Amount</flux:label>
         <flux:label>Unit</flux:label>
@@ -51,40 +77,12 @@ new class extends Component
                     :amount="$item['amount']"
                     :unit="$item['unit']"
                     :index="$index"
-                    :key="$index"
+                    :editingIndex="$editingIndex"
+                    :key="$index.'-'.$editingIndex"
                 />
             @endforeach
         </div>
     @endif
-    <flux:field>
-        <flux:input.group class="items-end">
-            <flux:input
-                wire:model="ingredient"
-                type="text"
-                required
-                autofocus
-                autocomplete="01:30"
-                :placeholder="__('Tomato')"
-                class=""
-            />
-            <flux:input
-                wire:model="amount"
-                type="text"
-                required
-                autofocus
-                autocomplete="01:30"
-                :placeholder="__('2')"
-            />
-            <flux:input
-                wire:model="unit"
-                type="text"
-                required
-                autofocus
-                autocomplete="01:30"
-                :placeholder="__('kg')"
-            />
-            <flux:button class="px-6 h-full text-white" icon="plus" variant="primary" wire:click="addIngredient"></flux:button>
-        </flux:input.group>
-    </flux:field>
+    <livewire:components.recipe-forms.create-list />
 </div>
 

@@ -31,6 +31,8 @@ new class extends Component
             <livewire:components.recipe-forms.ingredient-list/>
         @elseif($type === 'instructions')
             <livewire:components.recipe-forms.instructions/>
+        @elseif($type === 'tags')
+            <livewire:components.recipe-forms.tags/>
         @endif
     </div>
 </div>
