@@ -22,17 +22,18 @@ new class extends Component {
     <div class="w-full grid grid-cols-7 gap-y-2 mt-2">
         <flux:checkbox value="vegetarian" label="Vegetarian" />
         <flux:checkbox value="vegan" label="Vegan" />
-        <flux:checkbox value="gluten-free" label="Gluten-Free" />
-        <flux:checkbox value="paleo" label="Paleo" />
-        <flux:checkbox value="keto" label="Keto" />
-        <flux:checkbox value="low-carb" label="Low-Carb" />
-        <flux:checkbox value="dairy-free" label="Dairy-Free" />
-        <flux:checkbox value="nut-free" label="Nut-Free" />
+        <flux:checkbox value="pescatarian" label="Pescatarian" />
         <flux:checkbox value="halal" label="Halal" />
         <flux:checkbox value="kosher" label="Kosher" />
-        <flux:checkbox value="low-sodium" label="Low Sodium" />
+        <flux:checkbox value="gluten-free" label="Gluten-Free" />
+        <flux:checkbox value="dairy-free" label="Dairy-Free" />
+        <flux:checkbox value="low-calorie" label="Low Calorie" />
+        <flux:checkbox value="low-carb" label="Low Carb" />
         <flux:checkbox value="low-fat" label="Low Fat" />
+        <flux:checkbox value="low-sugar" label="Low Sugar" />
+        <flux:checkbox value="low-sodium" label="Low Sodium" />
         <flux:checkbox value="high-protein" label="High Protein" />
+        <flux:checkbox value="keto" label="Keto" />
     </div>
 
     <flux:separator class="mt-4" />
