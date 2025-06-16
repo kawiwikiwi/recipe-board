@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Recipe extends Model
 {
     protected $fillable = [
-        'name',
-        'description',
-        'prep_time',
+        'title',
+        'makes',
+        'serves',
         'cook_time',
+        'prep_time',
         'difficulty',
-        'total_time',
-        'servings',
-        'makes'
+        'description',
     ];
 
     public function user()
@@ -22,11 +21,30 @@ class Recipe extends Model
         return $this->hasMany(User::class);
     }
 
-    public function recipeIngredients(): BelongsToMany
+    public function ingredient()
     {
-        return $this->belongstoMany(RecipeIngredient::class, 'recipe_ingredients')
-            ->withPivot('quantity', 'unit')
-            ->withTimestamps();
+        return $this->hasMany(Ingredient::class);
     }
+
+    public function step()
+    {
+        return $this->hasMany(Step::class);
+    }
+
+    public function allergyTag() 
+    {
+        return $this->hasMany(AllergyTag::class);
+    }
+
+    public function cuisineTag() 
+    {
+        return $this->hasMany(CuisineTag::class);
+    }
+    
+    public function dietaryTag()
+    {
+        return $this->hasMany(DietaryTag::class);
+    }
+    
 }
 

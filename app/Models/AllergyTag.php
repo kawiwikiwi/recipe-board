@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ingredient extends Model
+class AllergyTag extends Model
 {
     protected $fillable = [
         'recipe_id',
-        'name',
-        'quantity',
-        'unit',
+        'allergy_requirement',
     ];
 
     public function recipe()

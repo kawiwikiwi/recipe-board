@@ -4,17 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ingredient extends Model
+class Step extends Model
 {
     protected $fillable = [
         'recipe_id',
-        'name',
-        'quantity',
-        'unit',
+        'step_number',
+        'title',
+        'instruction',
     ];
 
     public function recipe()
     {
         return $this->belongsTo(Recipe::class);
     }
+
 }
