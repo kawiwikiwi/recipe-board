@@ -14,6 +14,7 @@ class Recipe extends Model
         'prep_time',
         'difficulty',
         'description',
+        'is_published'
     ];
 
     public function user()
