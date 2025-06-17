@@ -1,9 +1,11 @@
 <?php
 
 use Livewire\Volt\Component;
+use Livewire\Attributes\Modelable;
 
 new class extends Component {
-    //
+    #[Modelable]
+    public $allergyTags = [];
 }; ?>
 
 <flux:fieldset>
@@ -16,20 +18,20 @@ new class extends Component {
     </flux:description>
 
     <div class="w-full grid grid-cols-7 gap-y-2 mt-2 items-start">
-        <flux:checkbox value="celery" label="Celery" />
-        <flux:checkbox value="crustaceans" label="Crustaceans" />
-        <flux:checkbox value="eggs" label="Eggs" />
-        <flux:checkbox value="fish" label="Fish" />
-        <flux:checkbox value="gluten" label="Gluten" />
-        <flux:checkbox value="lupin" label="Lupin" />
-        <flux:checkbox value="milk" label="Milk" />
-        <flux:checkbox value="molluscs" label="Molluscs" />
-        <flux:checkbox value="mustard" label="Mustard" />
-        <flux:checkbox value="nuts" label="Nuts" />
-        <flux:checkbox value="peanuts" label="Peanuts" />
-        <flux:checkbox value="sesame" label="Sesame" />
-        <flux:checkbox value="soybeans" label="Soybeans" />
-        <flux:checkbox value="sulphites" label="Sulphites" />
+        <flux:checkbox value="celery" label="Celery" wire:model.live="allergyTags" />
+        <flux:checkbox value="crustaceans" label="Crustaceans" wire:model.live="allergyTags" />
+        <flux:checkbox value="eggs" label="Eggs" wire:model.live="allergyTags" />
+        <flux:checkbox value="fish" label="Fish" wire:mode.livel="allergyTags" />
+        <flux:checkbox value="gluten" label="Gluten" wire:model.live="allergyTags" />
+        <flux:checkbox value="lupin" label="Lupin" wire:model.live="allergyTags" />
+        <flux:checkbox value="milk" label="Milk" wire:model.live="allergyTags" />
+        <flux:checkbox value="molluscs" label="Molluscs" wire:model.live="allergyTags" />
+        <flux:checkbox value="mustard" label="Mustard" wire:mode.live="allergyTags" />
+        <flux:checkbox value="nuts" label="Nuts" wire:model.live="allergyTags" />
+        <flux:checkbox value="peanuts" label="Peanuts" wire:model.live="allergyTags" />
+        <flux:checkbox value="sesame" label="Sesame" wire:model.live="allergyTags" />
+        <flux:checkbox value="soybeans" label="Soybeans" wire:model.live="allergyTags" />
+        <flux:checkbox value="sulphites" label="Sulphites" wire:model.live="allergyTags" />
     </div>
 
     <flux:separator class="mt-4" />

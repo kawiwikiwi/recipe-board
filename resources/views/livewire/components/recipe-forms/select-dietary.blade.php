@@ -1,12 +1,11 @@
 <?php
 
 use Livewire\Volt\Component;
+use Livewire\Attributes\Modelable;
 
 new class extends Component {
-    public function render(): mixed
-    {
-        return view('livewire.components.recipe-forms.select-dietary');
-    }
+    #[Modelable]
+    public $dietaryTags = [];
 }; ?>
 
 
@@ -20,20 +19,20 @@ new class extends Component {
     </flux:description>
 
     <div class="w-full grid grid-cols-7 gap-y-2 mt-2">
-        <flux:checkbox value="vegetarian" label="Vegetarian" />
-        <flux:checkbox value="vegan" label="Vegan" />
-        <flux:checkbox value="pescatarian" label="Pescatarian" />
-        <flux:checkbox value="halal" label="Halal" />
-        <flux:checkbox value="kosher" label="Kosher" />
-        <flux:checkbox value="gluten-free" label="Gluten-Free" />
-        <flux:checkbox value="dairy-free" label="Dairy-Free" />
-        <flux:checkbox value="low-calorie" label="Low Calorie" />
-        <flux:checkbox value="low-carb" label="Low Carb" />
-        <flux:checkbox value="low-fat" label="Low Fat" />
-        <flux:checkbox value="low-sugar" label="Low Sugar" />
-        <flux:checkbox value="low-sodium" label="Low Sodium" />
-        <flux:checkbox value="high-protein" label="High Protein" />
-        <flux:checkbox value="keto" label="Keto" />
+        <flux:checkbox value="vegetarian" label="Vegetarian" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="vegan" label="Vegan" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="pescatarian" label="Pescatarian" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="halal" label="Halal" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="kosher" label="Kosher" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="gluten_free" label="Gluten-Free" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="dairy_free" label="Dairy-Free" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="low_calorie" label="Low Calorie" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="low_carb" label="Low Carb" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="low_fat" label="Low Fat" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="low_sugar" label="Low Sugar" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="low_sodium" label="Low Sodium" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="high_protein" label="High Protein" wire:model.live="dietaryTags"/>
+        <flux:checkbox value="keto" label="Keto" wire:model.live="dietaryTags"/>
     </div>
 
     <flux:separator class="mt-4" />

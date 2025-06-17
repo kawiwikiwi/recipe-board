@@ -1,11 +1,9 @@
 <?php
 
 use Livewire\Volt\Component;
-use Livewire\Attributes\On;
+use Livewire\Attributes\Modelable;
 
 new class extends Component {
-    
-    public $steps = [];
     public $currentStep = 1;
     public $title;
     public $description;
@@ -13,7 +11,16 @@ new class extends Component {
     public $index;
     public $editingIndex = null;
 
-    protected $listeners = ['stepAdded', 'removeStep', 'editStep', 'saveStep', 'cancelEdit'];
+    #[Modelable]
+    public $steps = [];
+
+    protected $listeners = [
+        'stepAdded', 
+        'removeStep', 
+        'editStep', 
+        'saveStep', 
+        'cancelEdit'
+    ];
 
     
     

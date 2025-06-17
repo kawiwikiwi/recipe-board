@@ -1,23 +1,17 @@
 <?php
 
 use Livewire\Volt\Component;
-use Livewire\Attributes\On;
+use Livewire\Attributes\Reactive;
 use Livewire\Attributes\Modelable;
 
 
 
 new class extends Component
 {
-    public $title;
-    public $type;
-
-    #[Modelable]
-    public $basics = [];
 
 
-    public $ingredients = [];
 
-    public $instructions = [];
+
 
 
     public function mount($title, $type)
@@ -40,14 +34,14 @@ new class extends Component
     </div>
 
     <div class="bg-white dark:bg-zinc-800 p-10">
-        @if($type === 'basics')
+        <!-- @if($type === 'basics')
             <livewire:components.recipe-forms.basics wire:model="basics"/>
         @elseif($type === 'ingredients')
-            <livewire:components.recipe-forms.ingredient-list/>
+            <livewire:components.recipe-forms.ingredient-list wire:model="ingredients"/>
         @elseif($type === 'instructions')
-            <livewire:components.recipe-forms.instructions/>
+            <livewire:components.recipe-forms.instructions wire:model="instructions"/>
         @elseif($type === 'tags')
-            <livewire:components.recipe-forms.tags/>
-        @endif
+            <livewire:components.recipe-forms.tags wire:model="tags"/>
+        @endif -->
     </div>
 </div>

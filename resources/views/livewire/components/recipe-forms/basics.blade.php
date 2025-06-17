@@ -1,26 +1,14 @@
 <?php
 
 use Livewire\Volt\Component;
-use Livewire\Attributes\On;
-use function Livewire\Volt\{on};
 use Livewire\Attributes\Modelable;
 
 
 
 new class extends Component
 {
-    
-
     #[Modelable]
     public $basics = [];
-    
-    public function render(): mixed
-    {
-        return view('livewire.components.recipe-forms.basics');
-    }
-
-    
-
   
 }?>
 

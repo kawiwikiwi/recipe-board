@@ -1,23 +1,26 @@
 <?php
 
 use Livewire\Volt\Component;
-use Livewire\Attributes\On;
+use Livewire\Attributes\Modelable;
 
 new class extends Component
 {
     public $ingredient;
     public $amount;
     public $unit;
-    public $added_ingredient = [];
     public $index;
     public $editingIndex = null;
 
-    protected $listeners = ['editIngredient', 'saveIngredient', 'cancelEdit', 'removeIngredient', 'addIngredient'];
-    
-    public function render(): mixed
-    {
-        return view('livewire.components.recipe-forms.ingredient-list');
-    }
+    #[Modelable]
+    public $added_ingredient = [];
+
+    protected $listeners = [
+        'addIngredient',
+        'removeIngredient',
+        'editIngredient',
+        'saveIngredient',
+        'cancelEdit',
+    ];
 
     public function addIngredient($ingredient)
     {
@@ -27,7 +30,6 @@ new class extends Component
             'unit' => $ingredient['unit'],
         ];
     }
-   
 
     public function removeIngredient($index)
     {
