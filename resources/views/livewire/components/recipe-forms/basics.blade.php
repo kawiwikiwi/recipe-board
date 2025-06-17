@@ -1,13 +1,27 @@
 <?php
 
 use Livewire\Volt\Component;
+use Livewire\Attributes\On;
+use function Livewire\Volt\{on};
+use Livewire\Attributes\Modelable;
+
+
 
 new class extends Component
 {
+    
+
+    #[Modelable]
+    public $basics = [];
+    
     public function render(): mixed
     {
         return view('livewire.components.recipe-forms.basics');
     }
+
+    
+
+  
 }?>
 
 <div class="grid grid-cols-1 gap-6">
@@ -19,7 +33,7 @@ new class extends Component
                     Recipe Title
                 </flux:label>
                 <flux:input
-                    wire:model="name"
+                    wire:model.live="basics.title"
                     type="text"
                     required
                     autofocus
@@ -36,7 +50,7 @@ new class extends Component
                     Makes
                 </flux:label>
                 <flux:input
-                    wire:model="makes"
+                    wire:model.live="basics.makes"
                     type="number"
                     required
                     autofocus
@@ -53,7 +67,7 @@ new class extends Component
                     Serves
                 </flux:label>
             <flux:input
-                wire:model="serves"
+                wire:model.live="basics.serves"
                 type="number"
                 required
                 autofocus
@@ -72,7 +86,7 @@ new class extends Component
                     Cooking Time
                 </flux:label>
                 <flux:input
-                    wire:model="cook_time"
+                    wire:model.live="basics.cook_time"
                     type="time"
                     required
                     autofocus
@@ -89,7 +103,7 @@ new class extends Component
                     Preparation Time
                 </flux:label>
             <flux:input
-                wire:model="prep_time"
+                wire:model.live="basics.prep_time"
                 type="time"
                 required
                 autofocus
@@ -106,7 +120,7 @@ new class extends Component
                     Difficulty
                 </flux:label>
                 <flux:select
-                    wire:model="difficulty"
+                    wire:model.live="basics.difficulty"
                     required
                     autofocus
                 >
@@ -129,7 +143,7 @@ new class extends Component
                     Description
                 </flux:label>
                 <flux:textarea
-                    wire:model="description"
+                    wire:model.live="basics.description"
                     type="text"
                     required
                     autofocus

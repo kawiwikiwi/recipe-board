@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Volt\Component;
+use Livewire\Attributes\On;
 
 new class extends Component {
     
@@ -14,6 +15,8 @@ new class extends Component {
 
     protected $listeners = ['stepAdded', 'removeStep', 'editStep', 'saveStep', 'cancelEdit'];
 
+    
+    
     public function stepAdded($step)
     {
         $this->steps[] = $step;
