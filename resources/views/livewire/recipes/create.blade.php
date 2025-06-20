@@ -135,19 +135,19 @@ new #[Layout('components.layouts.app')] class extends Component {
 
 <div class="flex items-start justify-center animate-flip-up">
     <div class="w-full border border-alternate-600/20 rounded-2xl max-h-[91vh] flex flex-col max-w-7xl pb-6 bg-white/80 dark:bg-zinc-900/50 backdrop-blur-sm h-screen">
-        <div class="bg-accent bg-clip-border border-top-none rounded-t-2xl shadow-xl pb-6 pt-10 px-14 ">
-            <flux:button x-on:click="$flux.modal('leave-page').show()" icon="arrow-uturn-left" variant="ghost" class="absolute! left-0! top-0! py-5! px-7! inset-shadow-md bg-accent-700/50! hover:bg-[color-mix(in_oklab,_var(--color-accent-700),_transparent_10%)]! rounded-bl-none rounded-tr-none rounded-br-3xl rounded-tl-2xl!" size="sm">
+        <div class="bg-accent bg-clip-border border-top-none rounded-t-2xl border-b-6 border-b-accent-900 shadow-xl pb-5 pt-10 px-14 ">
+            <flux:button x-on:click="$flux.modal('leave-page').show()" icon="arrow-uturn-left" variant="ghost" class="absolute! left-0! top-0! py-5! px-7! h-12! inset-shadow-md bg-accent-700/50! hover:bg-[color-mix(in_oklab,_var(--color-accent-700),_transparent_10%)]! rounded-bl-none rounded-tr-none rounded-br-3xl rounded-tl-2xl!">
        
             </flux:button>
             <div class="items-center flex justify-between">
                 <div class="flex items-center justify-center ">
-                    <h1 class="text-[2.75rem] text-shadow-lg text-shadow-accent-700 text-white text-center  font-stretch-ultra-expanded font-bold">Create Your Recipe</h1>
+                    <h1 class="-mb-2 text-[2.75rem] text-shadow-lg text-shadow-accent-700 text-white text-center  font-stretch-ultra-expanded font-bold">Create Your Recipe</h1>
                 </div>
-                <div class="flex flex-nowrap gap-3 -mb-11">
-                    <flux:button icon="save" type="submit" class="inset-shadow-sm/50! inset-shadow-accent-800! rounded-b-none! text-shadow-md! border-none! bg-accent-700/50! hover:bg-[color-mix(in_oklab,_var(--color-accent-700),_transparent_10%)]! text-white!" size="sm" wire:click="saveRecipe">
+                <div class="flex flex-nowrap gap-3 -mb-10 ">
+                    <flux:button icon="save" type="submit" class="inset-shadow-sm/50! inset-shadow-accent-800! rounded-b-none! text-shadow-md! border-none! bg-accent-700/50! hover:bg-[color-mix(in_oklab,_var(--color-accent-700),_transparent_10%)]! h-15!" wire:click="saveRecipe">
                         Save
                     </flux:button>
-                    <flux:button icon="wand-sparkles" class="inset-shadow-sm/80! inset-shadow-alternate-800! rounded-b-none! text-shadow-md! border-none! bg-alternate-600! hover:bg-[color-mix(in_oklab,_var(--color-alternate-700),_transparent_10%)]!" size="sm" wire:click="publishRecipe">
+                    <flux:button icon="wand-sparkles" class="inset-shadow-sm/80! inset-shadow-alternate-800! rounded-b-none! text-shadow-md! border-none! bg-alternate-600! hover:bg-[color-mix(in_oklab,_var(--color-alternate-700),_transparent_10%)]! h-15!"  wire:click="publishRecipe">
                         Publish
                     </flux:button>
                 </div>
@@ -174,7 +174,7 @@ new #[Layout('components.layouts.app')] class extends Component {
             </div>
         </flux:modal>
 
-        <form class="mx-14 grid grid-cols-1 pt-10 gap-10 flex-1 overflow-y-scroll">
+        <form class="mx-14 grid grid-cols-1 pt-10 gap-10 flex-1 overflow-y-scroll ">
 
             <x-create-recipe-card title="Recipe Basics">
                 <livewire:components.recipe-forms.basics wire:model="basics" />
