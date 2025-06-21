@@ -9,7 +9,6 @@ new class extends Component
     public $amount;
     public $unit;
     public $index;
-    public $editingIndex = null;
 
     #[Modelable]
     public $added_ingredient = [];
@@ -28,44 +27,31 @@ new class extends Component
             'ingredient' => $ingredient['ingredient'],
             'amount' => $ingredient['amount'],
             'unit' => $ingredient['unit'],
+            'frontend_id' => $ingredient['frontend_id'] ?? Str::uuid()->toString(),
         ];
     }
 
-    public function removeIngredient($index)
+    public function getIndexByFrontendId($frontendId)
     {
+        return array_search($frontendId, array_column($this->added_ingredient, 'frontend_id'));
+    }
+
+    public function removeIngredient($frontendId)
+    {
+        $index = $this->getIndexByFrontendId($frontendId); 
         array_splice($this->added_ingredient, $index, 1);
-        return;
-        unset($this->added_ingredient[$index]);
-        $this->added_ingredient = array_values($this->added_ingredient);
-
-        // Adjust the editing index if necessary
-        if ($this->editingIndex === $index) {
-            $this->editingIndex = null;
-        } elseif ($this->editingIndex > $index) {
-            $this->editingIndex--;
-        }
     }
 
-    public function editIngredient($index)
+    public function saveIngredient($frontendId, $ingredient, $amount, $unit)
     {
-        $this->editingIndex = $index;
-    }
-
-    public function saveIngredient($index, $ingredient, $amount, $unit)
-    {
+        $index = $this->getIndexByFrontendId($frontendId); 
         $this->added_ingredient[$index] = [
             'id' => $this->added_ingredient[$index]['id'] ?? null,
             'ingredient' => $ingredient,
             'amount' => $amount,
             'unit' => $unit,
+            'frontend_id' => $this->added_ingredient[$index]['frontend_id']
         ];
-
-        $this->editingIndex = null;
-    }
-
-    public function cancelEdit()
-    {
-        $this->editingIndex = null;
     }
 }?>
 
@@ -82,9 +68,8 @@ new class extends Component
                     :ingredient="$item['ingredient']"
                     :amount="$item['amount']"
                     :unit="$item['unit']"
-                    :index="$index"
-                    :editingIndex="$editingIndex"
-                    :key="$index.'-'.$editingIndex"
+                    :index="$item['frontend_id']"
+                    :key="$item['frontend_id']"
                 />
             @endforeach
         </div>

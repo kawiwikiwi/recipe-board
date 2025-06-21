@@ -47,6 +47,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                     'ingredient' => $item->name,
                     'amount' => $item->quantity,
                     'unit' => $item->unit,
+                    'frontend_id' => $item->id,
                 ];
             })->toArray();
 

@@ -8,18 +8,17 @@ new class extends Component
     public $amount;
     public $unit;
     public $index;
-    public $editingIndex;
     public $editIngredient;
     public $editAmount;
     public $editUnit;
+    public $isEditing;
 
-    public function mount($ingredient, $amount, $unit, $index, $editingIndex = null)
+    public function mount($ingredient, $amount, $unit, $index, $isEditing = false)
     {
         $this->ingredient = $ingredient;
         $this->amount = $amount;
         $this->unit = $unit;
         $this->index = $index;
-        $this->editingIndex = $editingIndex;
         $this->editIngredient = $ingredient;
         $this->editAmount = $amount;
         $this->editUnit = $unit;
@@ -32,28 +31,24 @@ new class extends Component
 
     public function edit()
     {
-        $this->dispatch('editIngredient', $this->index);
+        $this->isEditing = true;
     }
 
     public function saveEdit()
     {
         $this->dispatch('saveIngredient', $this->index, $this->editIngredient, $this->editAmount, $this->editUnit);
+        $this->isEditing = false;
     }
 
     public function cancelEdit()
     {
-        $this->dispatch('cancelEdit', $this->index);
+        $this->isEditing = false;
     }
 
     public function render():mixed
     {
         return view('livewire.components.recipe-forms.create-list-item');
     }
-
-    public function getIsEditingProperty()
-{
-    return $this->editingIndex === $this->index;
-}
 }?>
 
 

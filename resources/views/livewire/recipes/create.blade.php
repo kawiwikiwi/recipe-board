@@ -8,15 +8,12 @@ use Flux\Flux;
 
 
 new #[Layout('components.layouts.app')] class extends Component {
-
-
     public $basics = [];
     public $ingredients = [];
     public $steps = [];
     public $cuisineTags = [];
     public $dietaryTags = [];
     public $allergyTags = [];
-
 
     public $user_id;
 
@@ -46,6 +43,8 @@ new #[Layout('components.layouts.app')] class extends Component {
 
     public function saveRecipe()
     {
+        logger('Create: Saving recipe...');
+
         $validated = $this->validate([
             'basics.title' => 'required|string|max:255|unique:recipes,title',
             'basics.makes' => 'nullable|integer',

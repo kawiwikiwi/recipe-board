@@ -21,8 +21,6 @@ new class extends Component {
         'saveStep', 
         'cancelEdit'
     ];
-
-    
     
     public function stepAdded($step)
     {
