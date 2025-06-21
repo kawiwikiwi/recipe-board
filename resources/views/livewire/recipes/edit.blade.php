@@ -8,8 +8,6 @@ use Flux\Flux;
 
 
 new #[Layout('components.layouts.app')] class extends Component {
-
-
     public $basics = [];
     public $ingredients = [];
     public $steps = [];
@@ -19,10 +17,51 @@ new #[Layout('components.layouts.app')] class extends Component {
 
 
     public $user_id;
+    public $recipe;
 
     public $listeners = [
         'setBasicsData',
     ];
+
+    public function render(): mixed
+    {
+        return view('livewire.recipes.edit');
+    }
+    public function mount(Recipe $recipe)
+    {
+        $this->recipe = $recipe;
+        if ($recipe->exists) {
+            $this->basics = [
+                'title' => $recipe->title,
+                'makes' => $recipe->makes,
+                'serves' => $recipe->serves,
+                'cook_time' => $recipe->cook_time,
+                'prep_time' => $recipe->prep_time,
+                'difficulty' => $recipe->difficulty,
+                'description' => $recipe->description,
+            ];
+
+            $this->ingredients = $recipe->ingredient()->get()->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'ingredient' => $item->name,
+                    'amount' => $item->quantity,
+                    'unit' => $item->unit,
+                ];
+            })->toArray();
+
+            $this->steps = $recipe->step()->get()->map(function ($item) {
+                return [
+                    'step' => $item->step_number,
+                    'title' => $item->title,
+                    'description' => $item->description,
+                ];
+            })->toArray();
+            $this->cuisineTags = $recipe->cuisineTag()->pluck('cuisine_type')->toArray();
+            $this->dietaryTags = $recipe->dietaryTag()->pluck('dietary_requirement')->toArray();
+            $this->allergyTags = $recipe->allergyTag()->pluck('allergy_requirement')->toArray();
+        }
+    }
 
     public function showModal()
     {
@@ -33,11 +72,6 @@ new #[Layout('components.layouts.app')] class extends Component {
     {
         Flux::modal('leave-page')->close();
     }
-    
-    public function render(): mixed
-    {
-        return view('livewire.recipes.create');
-    }
 
     public function redirectToMyRecipes()
     {
@@ -47,7 +81,7 @@ new #[Layout('components.layouts.app')] class extends Component {
     public function saveRecipe()
     {
         $validated = $this->validate([
-            'basics.title' => 'required|string|max:255|unique:recipes,title',
+            'basics.title' => 'required|string|max:255|unique:recipes,title,' . $this->recipe->id,
             'basics.makes' => 'nullable|integer',
             'basics.serves' => 'nullable|integer',
             'basics.cook_time' => 'nullable|date_format:H:i',
@@ -85,22 +119,36 @@ new #[Layout('components.layouts.app')] class extends Component {
 
 
         $this->user_id = Auth::user()->id;
-        logger(Auth::user());
+        $recipe = Recipe::updateOrCreate(
+            ['id' => $this->recipe?->id],
+            [
+                'user_id' => $this->user_id,
+                'title' => $validated['basics']['title'],
+                'makes' => $validated['basics']['makes'] ?? null,
+                'serves' => $validated['basics']['serves'] ?? null,
+                'cook_time' => $validated['basics']['cook_time'] ?? null,
+                'prep_time' => $validated['basics']['prep_time'] ?? null,
+                'difficulty' => $validated['basics']['difficulty'],
+                'description' => $validated['basics']['description'] ?? null,
+            ]
+        );
 
-        $recipe = Recipe::create([
-            'user_id' => $this->user_id,
-            'title' => $validated['basics']['title'],
-            'makes' => $validated['basics']['makes'] ?? null,
-            'serves' => $validated['basics']['serves'] ?? null,
-            'cook_time' => $validated['basics']['cook_time'] ?? null,
-            'prep_time' => $validated['basics']['prep_time'] ?? null,
-            'difficulty' => $validated['basics']['difficulty'],
-            'description' => $validated['basics']['description'] ?? null,
-            'is_published' => false,
-        ]);
+        // 1. We might have an existing ingredient ID, in that case we want to update it
+        // 2. We might not have an ID, in that case we want to create a new ingredient
+        // 3. We might have some ingredients that have been removed, we need to remove them from the recipe
+        $recipeIngredients = $recipe->ingredient()->get();
+        $recipeIngredients->map(
+            function ($ingredient) {
+                $exists = collect($this->ingredients)->firstWhere('id', $ingredient->id);
+                if (!$exists) {
+                    $ingredient->delete();
+                }
+            }
+        );
 
         foreach ($this->ingredients as $ingredient) {
-            $recipe->ingredient()->create([
+            $recipe->ingredient()->updateOrCreate(['id' => $ingredient['id'] ?? null], 
+            [
                 'name' => $ingredient['ingredient'],
                 'quantity' => $ingredient['amount'],
                 'unit' => $ingredient['unit'] ?? null,
@@ -108,7 +156,7 @@ new #[Layout('components.layouts.app')] class extends Component {
         }
 
         foreach ($this->steps as $step) {
-            $recipe->step()->create([
+            $recipe->step()->updateOrCreate([
                 'step_number' => $step['step'],
                 'title' => $step['title'] ?? null,
                 'description' => $step['description'] ?? null,
@@ -117,7 +165,7 @@ new #[Layout('components.layouts.app')] class extends Component {
 
         if (!empty($this->cuisineTags)) {
             foreach ($this->cuisineTags as $cuisine) {
-                $recipe->cuisineTag()->create([
+                $recipe->cuisineTag()->updateOrCreate([
                     'cuisine_type' => $cuisine,
                 ]);
             }
@@ -125,7 +173,7 @@ new #[Layout('components.layouts.app')] class extends Component {
 
         if (!empty($this->allergyTags)) {
             foreach ($this->allergyTags as $allergy) {
-                $recipe->allergyTag()->create([
+                $recipe->allergyTag()->updateOrCreate([
                     'allergy_requirement' => $allergy,
                 ]);
             }
@@ -133,7 +181,7 @@ new #[Layout('components.layouts.app')] class extends Component {
 
         if (!empty($this->dietaryTags)) {
             foreach ($this->dietaryTags as $dietary) {
-                $recipe->dietaryTag()->create([
+                $recipe->dietaryTag()->updateOrCreate([
                     'dietary_requirement' => $dietary,
                 ]);
             }
@@ -144,7 +192,7 @@ new #[Layout('components.layouts.app')] class extends Component {
 
 }; ?>
 
-<x-main-layout title="Create Your Recipe">
+<x-main-layout title="Edit Your Recipe">
     <x-slot:backButton>
         <flux:button 
             wire:click="showModal"

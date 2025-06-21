@@ -33,6 +33,8 @@ new class extends Component
 
     public function removeIngredient($index)
     {
+        array_splice($this->added_ingredient, $index, 1);
+        return;
         unset($this->added_ingredient[$index]);
         $this->added_ingredient = array_values($this->added_ingredient);
 
@@ -52,6 +54,7 @@ new class extends Component
     public function saveIngredient($index, $ingredient, $amount, $unit)
     {
         $this->added_ingredient[$index] = [
+            'id' => $this->added_ingredient[$index]['id'] ?? null,
             'ingredient' => $ingredient,
             'amount' => $amount,
             'unit' => $unit,
