@@ -110,7 +110,7 @@ new #[Layout('components.layouts.app')] class extends Component {
             $recipe->step()->create([
                 'step_number' => $step['step'],
                 'title' => $step['title'] ?? null,
-                'description' => $step['description'] ?? null,
+                'instruction' => $step['description'] ?? null,
             ]);
         }
 
