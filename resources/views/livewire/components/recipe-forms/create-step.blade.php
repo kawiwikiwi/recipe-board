@@ -14,21 +14,18 @@ new class extends Component {
             'step' => $this->currentStep,
             'title' => $this->title,
             'description' => $this->description,
+            'frontend_id' => Str::uuid()->toString(),
         ]);
 
         // Clear input fields
         $this->title = '';
         $this->description = '';
-
     }
-
 
     public function render(): mixed
     {
         return view('livewire.components.recipe-forms.create-step');
     }
-
-
 }; ?>
 
 

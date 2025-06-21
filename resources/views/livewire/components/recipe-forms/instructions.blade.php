@@ -16,78 +16,61 @@ new class extends Component {
 
     protected $listeners = [
         'stepAdded', 
-        'removeStep', 
-        'editStep', 
+        'removeStep',
         'saveStep', 
-        'cancelEdit'
     ];
-    
-    public function stepAdded($step)
+
+    public function getIndexByFrontendId($frontendId)
     {
-        $this->steps[] = $step;
-        $this->currentStep++;
+        return array_search($frontendId, array_column($this->steps, 'frontend_id'));
     }
 
-    public function removeStep($index)
+    public function removeStep($frontendId)
     {
-        unset($this->steps[$index]);
+        $index = $this->getIndexByFrontendId($frontendId);
+        array_splice($this->steps, $index, 1);
         $this->steps = array_values($this->steps);
-
-        // Decrement the 'step' value for all steps after the removed one
-        for ($i = $index; $i < count($this->steps); $i++) {
-            if (isset($this->steps[$i]['step'])) {
-                $this->steps[$i]['step'] = $this->steps[$i]['step'] - 1;
+        
+        foreach ($this->steps as $key => $step) {
+            if ($step['step'] > $index) {
+                $this->steps[$key]['step']--;
             }
         }
 
-        // Adjust the editing index if necessary
-        // If the current editing index is the one being removed, reset it
-        if ($this->editingIndex === $index) {
-            $this->editingIndex = null;
-        } elseif ($this->editingIndex > $index) {
-            $this->editingIndex--;
-        }
-
-        // Decrement the current step if the last step was removed
         $this->currentStep = count($this->steps) + 1;
     }
 
-    public function editStep($index)
+    public function saveStep($stepIndex, $title, $description, $frontendId)
     {
-        $this->editingIndex = $index;
-    }
-
-    public function cancelEdit()
-    {
-        $this->editingIndex = null;
-    }
-
-    public function saveStep($index, $title, $description)
-    {
+        $index = $this->getIndexByFrontendId($frontendId);
         $this->steps[$index]['title'] = $title;
         $this->steps[$index]['description'] = $description;
-        $this->editingIndex = null;
+        $this->steps[$index]['step'] = $stepIndex;
+        $this->steps[$index]['frontend_id'] = $frontendId;
+        $this->currentStep++;
+    }
+
+    public function stepAdded($stepData)
+    {
+        array_push($this->steps, $stepData);
+        $this->currentStep++;
     }
 
     public function render(): mixed
     {
         return view('livewire.components.recipe-forms.instructions');
     }
-
-
-    
 } ?>
 
 <div class="grid grid-cols-1 gap-4">
     @if (!empty($steps))
-        @foreach($steps as $index => $step)
+        @foreach($steps as $step)
             <livewire:components.recipe-forms.create-step-item
                 :title="$step['title']"
                 :description="$step['description']"
                 :step="$step['step']"
-                :index="$index"
-                :editingIndex="$editingIndex"
-                :key="$index.'-'.$editingIndex"
+                :frontendId="$step['frontend_id']"
+                :key="'instruction-'.$step['frontend_id']"
             />
         @endforeach
     @endif

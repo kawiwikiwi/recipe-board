@@ -1,26 +1,27 @@
 <?php
 
 use Livewire\Volt\Component;
+use Livewire\Attributes\Reactive;
 
 new class extends Component {
 
     public $title;
     public $description;
+    #[Reactive]
     public $step;
-    public $index;
     public $isEditing = false;
     public $editTitle;
     public $editDescription;
+    public $frontendId;
 
-    public function mount($title, $description, $step, $index, $editingIndex = null)
+    public function mount($title, $description, $step)
     {
         $this->title = $title;
         $this->description = $description;
         $this->step = $step;
-        $this->index = $index;
         $this->editTitle = $title;
         $this->editDescription = $description;
-        $this->isEditing = ($editingIndex === $index);
+        $this->frontendId = $this->frontendId ?? Str::uuid()->toString();
     }
     
     public function render(): mixed
@@ -30,27 +31,24 @@ new class extends Component {
 
     public function removeStep()
     {
-        $this->dispatch('removeStep', $this->index);
+        $this->dispatch('removeStep', $this->frontendId);
     }
 
     public function editStep()
     {
-        $this->dispatch('editStep', $this->index);
+        $this->isEditing = true;
     }
 
     public function saveStep()
     {
-        $this->dispatch('saveStep', $this->index, $this->editTitle, $this->editDescription);
+        $this->dispatch('saveStep', $this->step, $this->editTitle, $this->editDescription, $this->frontendId);
         $this->isEditing = false;
     }
 
     public function cancelEdit()
     {
-        $this->dispatch('cancelEdit', $this->index);
         $this->isEditing = false;
     }
-
-
 }; ?>
 
 <div class="flex gap-10 w-full overflow-visible">

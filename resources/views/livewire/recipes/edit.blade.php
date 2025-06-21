@@ -15,7 +15,6 @@ new #[Layout('components.layouts.app')] class extends Component {
     public $dietaryTags = [];
     public $allergyTags = [];
 
-
     public $user_id;
     public $recipe;
 
@@ -53,11 +52,14 @@ new #[Layout('components.layouts.app')] class extends Component {
 
             $this->steps = $recipe->step()->get()->map(function ($item) {
                 return [
+                    'id' => $item->id,
                     'step' => $item->step_number,
                     'title' => $item->title,
-                    'description' => $item->description,
+                    'description' => $item->instruction,
+                    'frontend_id' => $item->id,
                 ];
             })->toArray();
+
             $this->cuisineTags = $recipe->cuisineTag()->pluck('cuisine_type')->toArray();
             $this->dietaryTags = $recipe->dietaryTag()->pluck('dietary_requirement')->toArray();
             $this->allergyTags = $recipe->allergyTag()->pluck('allergy_requirement')->toArray();
@@ -77,6 +79,47 @@ new #[Layout('components.layouts.app')] class extends Component {
     public function redirectToMyRecipes()
     {
         $this->redirect(route('recipes.index', absolute: false), navigate: true);
+    }
+
+    public function saveIngredients($recipe) {
+        $recipeIngredients = $recipe->ingredient()->get();
+        $recipeIngredients->map(
+            function ($ingredient) {
+                $exists = collect($this->ingredients)->firstWhere('id', $ingredient->id);
+                if (!$exists) {
+                    $ingredient->delete();
+                }
+            }
+        );
+
+        foreach ($this->ingredients as $ingredient) {
+            $recipe->ingredient()->updateOrCreate(['id' => $ingredient['id'] ?? null], 
+            [
+                'name' => $ingredient['ingredient'],
+                'quantity' => $ingredient['amount'],
+                'unit' => $ingredient['unit'] ?? null,
+            ]);
+        }
+    }
+
+    public function saveSteps($recipe) {
+                $recipeSteps = $recipe->step()->get();
+        $recipeSteps->map(
+            function ($step) {
+                $exists = collect($this->steps)->firstWhere('id', $step->id);
+                if (!$exists) {
+                    $step->delete();
+                }
+            }
+        );
+
+        foreach ($this->steps as $step) { 
+            $recipe->step()->updateOrCreate(['id' => $step['id'] ?? null], [
+                'step_number' => $step['step'],
+                'title' => $step['title'] ?? null,
+                'instruction' => $step['description'] ?? null,
+            ]);
+        }
     }
 
     public function saveRecipe()
@@ -134,35 +177,8 @@ new #[Layout('components.layouts.app')] class extends Component {
             ]
         );
 
-        // 1. We might have an existing ingredient ID, in that case we want to update it
-        // 2. We might not have an ID, in that case we want to create a new ingredient
-        // 3. We might have some ingredients that have been removed, we need to remove them from the recipe
-        $recipeIngredients = $recipe->ingredient()->get();
-        $recipeIngredients->map(
-            function ($ingredient) {
-                $exists = collect($this->ingredients)->firstWhere('id', $ingredient->id);
-                if (!$exists) {
-                    $ingredient->delete();
-                }
-            }
-        );
-
-        foreach ($this->ingredients as $ingredient) {
-            $recipe->ingredient()->updateOrCreate(['id' => $ingredient['id'] ?? null], 
-            [
-                'name' => $ingredient['ingredient'],
-                'quantity' => $ingredient['amount'],
-                'unit' => $ingredient['unit'] ?? null,
-            ]);
-        }
-
-        foreach ($this->steps as $step) {
-            $recipe->step()->updateOrCreate([
-                'step_number' => $step['step'],
-                'title' => $step['title'] ?? null,
-                'description' => $step['description'] ?? null,
-            ]);
-        }
+        $this->saveIngredients($recipe);
+        $this->saveSteps($recipe);
 
         if (!empty($this->cuisineTags)) {
             foreach ($this->cuisineTags as $cuisine) {
