@@ -52,6 +52,8 @@
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
 
+    --h-screen-minus-header: calc(100% - 6.5rem)
+    
     --text-shadow-inset: 2px 2px 4px rgba(221,112,124,0.5);
 
     --text-shadow-inset-test:  1px 4px 6px rgba(221,112,124,0.5), 0 0 0 #7d3a41, 1px 4px 6px rgba(221,112,124,0.5)

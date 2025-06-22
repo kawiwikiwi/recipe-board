@@ -1,5 +1,5 @@
-<div class="flex items-start justify-center animate-flip-up">
-    <div class="w-full border border-alternate-600/20 rounded-2xl max-h-[91vh] flex flex-col max-w-7xl pb-6 bg-white/80 dark:bg-zinc-900/50 backdrop-blur-sm h-screen">
+<div class="flex items-start justify-center animate-flip-up h-[calc(100vh_-_7.5rem)]">
+    <div class="w-full border border-alternate-600/20 rounded-2xl max-h-[calc(100vh_-_6.75rem)] flex flex-col max-w-7xl bg-white/80 dark:bg-zinc-900/50 backdrop-blur-sm">
         <div class="bg-accent bg-clip-border border-top-none rounded-t-2xl border-b-6 border-b-accent-900 shadow-xl pb-5 pt-10 px-14 ">
             
             {{ $backButton }}

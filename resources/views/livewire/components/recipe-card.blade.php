@@ -86,7 +86,7 @@ new class extends Component
     </div>
 
     <div class="flex w-full justify-center items-center gap-4 mb-4">
-        <flux:button.group class="">
+        <flux:button.group>
             <flux:button
                 icon="clipboard-pen-line"
                 size="sm"
