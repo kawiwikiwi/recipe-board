@@ -52,7 +52,7 @@
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
 
-    --h-screen-minus-header: calc(100% - 6.5rem)
+    --h-screen-minus-header: calc(100% - 4rem)
     
     --text-shadow-inset: 2px 2px 4px rgba(221,112,124,0.5);
 

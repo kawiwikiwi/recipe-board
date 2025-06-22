@@ -9,6 +9,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Volt::route('dashboard', 'dashboard')->name('dashboard');
+    Volt::route('recipes', 'recipes.search')->name('recipes.search');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
