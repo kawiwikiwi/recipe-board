@@ -21,12 +21,12 @@ new class extends Component {
         <flux:checkbox value="celery" label="Celery" wire:model.live="allergyTags" />
         <flux:checkbox value="crustaceans" label="Crustaceans" wire:model.live="allergyTags" />
         <flux:checkbox value="eggs" label="Eggs" wire:model.live="allergyTags" />
-        <flux:checkbox value="fish" label="Fish" wire:mode.livel="allergyTags" />
+        <flux:checkbox value="fish" label="Fish" wire:model.live="allergyTags" />
         <flux:checkbox value="gluten" label="Gluten" wire:model.live="allergyTags" />
         <flux:checkbox value="lupin" label="Lupin" wire:model.live="allergyTags" />
         <flux:checkbox value="milk" label="Milk" wire:model.live="allergyTags" />
         <flux:checkbox value="molluscs" label="Molluscs" wire:model.live="allergyTags" />
-        <flux:checkbox value="mustard" label="Mustard" wire:mode.live="allergyTags" />
+        <flux:checkbox value="mustard" label="Mustard" wire:model.live="allergyTags" />
         <flux:checkbox value="nuts" label="Nuts" wire:model.live="allergyTags" />
         <flux:checkbox value="peanuts" label="Peanuts" wire:model.live="allergyTags" />
         <flux:checkbox value="sesame" label="Sesame" wire:model.live="allergyTags" />

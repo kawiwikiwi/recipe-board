@@ -20,12 +20,12 @@ new #[Layout('components.layouts.app')] class extends Component {
         $this->recipes = Recipe::where('is_published', '=', 1)
             ->when($this->search != null, function ($query) {
                 $query->where('title', 'LIKE', '%' . $this->search . '%')
-                    ->orWhereHas('ingredient', function ($query) {
-                        $query->where('name', 'LIKE', '%' . $this->search . '%');
-                    })
-                    ->orWhereHas('cuisineTag', function ($query) {
-                        $query->where('cuisine_type', 'LIKE', '%' . $this->search . '%');
-                    });
+                      ->orWhereHas('ingredient', function ($query) {
+                          $query->where('name', 'LIKE', '%' . $this->search . '%');
+                      })
+                      ->orWhereHas('cuisineTag', function ($query) {
+                          $query->where('cuisine_type', 'LIKE', '%' . $this->search . '%');
+                      });
             })
             ->when(count($this->allergyTags) > 0, function ($query) {
                 $query->whereHas('allergyTag', function ($query) {
@@ -102,6 +102,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                     clearable
                     type="search"
                     icon="magnifying-glass"
+                    class=""
                     class:input="bg-zinc-900! h-12!"
                     wire:model.live="search"
                     wire:keydown.enter="getRecipes"
@@ -138,12 +139,12 @@ new #[Layout('components.layouts.app')] class extends Component {
                 <flux:checkbox value="celery" label="Celery" wire:model.live="allergyTags" />
                 <flux:checkbox value="crustaceans" label="Crustaceans" wire:model.live="allergyTags" />
                 <flux:checkbox value="eggs" label="Eggs" wire:model.live="allergyTags" />
-                <flux:checkbox value="fish" label="Fish" wire:mode.livel="allergyTags" />
+                <flux:checkbox value="fish" label="Fish" wire:model.live="allergyTags" />
                 <flux:checkbox value="gluten" label="Gluten" wire:model.live="allergyTags" />
                 <flux:checkbox value="lupin" label="Lupin" wire:model.live="allergyTags" />
                 <flux:checkbox value="milk" label="Milk" wire:model.live="allergyTags" />
                 <flux:checkbox value="molluscs" label="Molluscs" wire:model.live="allergyTags" />
-                <flux:checkbox value="mustard" label="Mustard" wire:mode.live="allergyTags" />
+                <flux:checkbox value="mustard" label="Mustard" wire:model.live="allergyTags" />
                 <flux:checkbox value="nuts" label="Nuts" wire:model.live="allergyTags" />
                 <flux:checkbox value="peanuts" label="Peanuts" wire:model.live="allergyTags" />
                 <flux:checkbox value="sesame" label="Sesame" wire:model.live="allergyTags" />
