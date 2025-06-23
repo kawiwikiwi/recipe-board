@@ -15,7 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Volt::route('my-recipes', 'recipes.index')->name('recipes.index');
     Volt::route('my-recipes/create', 'recipes.create')->name('recipes.create');
-    Volt::route('saved-recipes', 'recipes.saved')->name('recipes.saved');
+    Volt::route('recipes/favourites', 'recipes.favourites')->name('recipes.favourites');
     Volt::route('my-recipes/edit/{recipe}', 'recipes.edit')->name('recipes.edit');
 });
 

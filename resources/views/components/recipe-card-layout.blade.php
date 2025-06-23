@@ -3,7 +3,7 @@
         <div>
             {{ $deleteButton }}
         </div>
-        <div class="absolute top-0 right-0 flex flex-row-reverse items-center justify-center">
+        <div class="absolute top-0 right-0">
             {{ $favourite }}
         </div>
     </div>

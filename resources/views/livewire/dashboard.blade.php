@@ -12,6 +12,7 @@ new #[Layout('components.layouts.app')] class extends Component {
     public function mount() {
         $this->user_id = Auth::user()->id;
         $this->recipes = Recipe::where('user_id', $this->user_id)->get();
+
     }
 
     public function getRecipeTime($recipe)
@@ -54,15 +55,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                         </x-slot:deleteButton>
 
                         <x-slot:favourite>
-                            <flux:button
-                                class="h-10! w-10! p-4! bg-transparent! border-none!"
-                                wire:click="toggleFavorite"
-                            >
-                                <flux:icon name="heart" class="text-accent-500 h-8 w-8" />
-                            </flux:button>
-                            <flux:heading class="text-lg!">
-                                {{ $likeCount ?? 0}}
-                            </flux:heading>
+                            <livewire:components.favourite-recipe :recipeId="$recipe->id" :key="$recipe->id" /> 
                         </x-slot:favourite>
 
                         <x-slot:recipeTime>
@@ -113,15 +106,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                         </x-slot:deleteButton>
 
                         <x-slot:favourite>
-                            <flux:button
-                                class="h-10! w-10! p-4! bg-transparent! border-none!"
-                                wire:click="toggleFavorite"
-                            >
-                                <flux:icon name="heart" class="text-accent-500 h-8 w-8" />
-                            </flux:button>
-                            <flux:heading class="text-lg!">
-                                {{ $likeCount ?? 0}}
-                            </flux:heading>
+                            <livewire:components.favourite-recipe :recipe="$recipe" /> 
                         </x-slot:favourite>
 
                         <x-slot:recipeTime>
@@ -172,15 +157,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                         </x-slot:deleteButton>
 
                         <x-slot:favourite>
-                            <flux:button
-                                class="h-10! w-10! p-4! bg-transparent! border-none!"
-                                wire:click="toggleFavorite"
-                            >
-                                <flux:icon name="heart" class="text-accent-500 h-8 w-8" />
-                            </flux:button>
-                            <flux:heading class="text-lg!">
-                                {{ $likeCount ?? 0}}
-                            </flux:heading>
+                            <livewire:components.favourite-recipe :recipe="$recipe" /> 
                         </x-slot:favourite>
 
                         <x-slot:recipeTime>

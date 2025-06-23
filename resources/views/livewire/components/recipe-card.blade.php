@@ -46,17 +46,7 @@ new class extends Component
                 <flux:icon name="trash-2" class="h-7 w-7 text-zinc-500 dark:text-white/70 group-hover:text-red-400! dark:group-hover:text-red-400!" />
             </flux:button>
         </div>
-        <div class="absolute top-0 right-0 flex flex-row-reverse items-center justify-center">
-            <flux:button
-                class="h-10! w-10! p-4! bg-transparent! border-none!"
-                wire:click="toggleFavorite"
-            >
-                <flux:icon name="heart" class="text-accent-500 h-8 w-8" />
-            </flux:button>
-            <flux:heading class="text-lg!">
-                {{ $likeCount ?? 0}}
-            </flux:heading>
-        </div>
+        <livewire:components.favourite-recipe />
     </div>
 
     <flux:heading class="text-center text-4xl!">

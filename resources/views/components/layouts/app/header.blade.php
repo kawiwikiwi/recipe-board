@@ -33,9 +33,9 @@
                     <flux:navbar.item
                         class="h-10 max-lg:hidden [&>div>svg]:size-5"
                         icon="heart"
-                        :href="route('recipes.saved')"
+                        :href="route('recipes.favourites')"
                         wire:navigate
-                        label="Saved Recipes"
+                        label="Favourite Recipes"
                     />
                 </flux:tooltip>
                 

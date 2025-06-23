@@ -51,5 +51,9 @@ class Recipe extends Model
         return $this->hasMany(DietaryTag::class);
     }
     
+    public function like()
+    {
+        return $this->hasMany(RecipeLike::class);
+    }
 }
 
