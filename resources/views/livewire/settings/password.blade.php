@@ -35,6 +35,11 @@ new class extends Component {
 
         $this->dispatch('password-updated');
     }
+
+    public function redirectToDashboard()
+    {
+        return redirect()->route('dashboard');
+    }
 }; ?>
 
 <section class="w-full">

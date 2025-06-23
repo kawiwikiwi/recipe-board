@@ -3,7 +3,10 @@
 use Livewire\Volt\Component;
 
 new class extends Component {
-    //
+    public function redirectToDashboard()
+    {
+        return redirect()->route('dashboard');
+    }
 }; ?>
 
 <section class="w-full">

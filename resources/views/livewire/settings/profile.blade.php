@@ -19,6 +19,11 @@ new class extends Component {
         $this->email = Auth::user()->email;
     }
 
+    public function redirectToDashboard()
+    {
+        return redirect()->route('dashboard');
+    }
+
     /**
      * Update the profile information for the currently authenticated user.
      */
