@@ -2,12 +2,14 @@
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 use App\Models\Recipe;
+use Flux\Flux;
 
 
 new #[Layout('components.layouts.app')] class extends Component {
     public $recipes;
     public $user;
     public $user_id;
+    public $recipeId;
 
     public function render(): mixed
     {
@@ -33,14 +35,31 @@ new #[Layout('components.layouts.app')] class extends Component {
         $this->redirect(route('recipes.edit', [$recipeId]), navigate:true);
     }
 
+    public function showModal($recipeId) {
+        $this->recipeId = $recipeId;
+        Flux::modal('delete-recipe')->show();
+    }
+
+    public function closeModal()
+    {
+        Flux::modal('delete-recipe')->close();
+    }
+
     public function deleteRecipe($recipeId) {
         $recipe = Recipe::find($recipeId);
         if ($recipe) {
+            $recipe->like()->delete();
+            $recipe->ingredient()->delete();
+            $recipe->step()->delete();
+            $recipe->cuisineTag()->delete();
+            $recipe->dietaryTag()->delete();
+            $recipe->allergyTag()->delete();
+
             $recipe->delete();
+
             $this->recipes = Recipe::where('user_id', $this->user_id)->get();
-            session()->flash('message', 'Recipe deleted successfully.');
-        } else {
-            session()->flash('error', 'Recipe not found.');
+
+            $this->closeModal();
         }
     }
 
@@ -104,6 +123,26 @@ new #[Layout('components.layouts.app')] class extends Component {
     </x-slot:headerButtons>
 
     <x-slot:content>
+        <flux:modal name="delete-recipe" class="border-2 border-accent! min-w-[22rem]">
+            <div class="space-y-6">
+                <div>
+                    <flux:heading size="lg">Are you sure you want to delete this recipe?</flux:heading>
+
+                    <flux:text>This action cannot be undone.</flux:text>
+                </div>
+
+                <div class="flex gap-2">
+                    <flux:spacer />
+                    
+                    <flux:button wire:click="closeModal" variant="ghost" size="sm">Cancel</flux:button>
+
+                    <flux:button variant="primary" size="sm" wire:click="deleteRecipe({{ $recipeId }})">
+                        Delete
+                    </flux:button>
+                </div>
+            </div>
+        </flux:modal>
+
         @if($recipes->isEmpty())
             <p class="text-gray-500 p-10">No recipes added.</p>
         @else
@@ -117,14 +156,14 @@ new #[Layout('components.layouts.app')] class extends Component {
                     <x-slot:deleteButton>
                         <flux:button 
                             class="group h-10! w-10! bg-transparent! border-none!" 
-                            wire:click="deleteRecipe({{ $recipe->id }})"
+                            wire:click="showModal({{ $recipe->id }})"
                         >
                             <flux:icon name="trash-2" class="h-7 w-7 text-zinc-500 dark:text-white/70 group-hover:text-red-400! dark:group-hover:text-red-400!" />
                         </flux:button>
                     </x-slot:deleteButton>
 
                     <x-slot:favourite>
-                        <livewire:components.favourite-recipe :recipeId="$recipe->id" :key="$recipe->id" />
+                        <livewire:components.favourite-recipe :recipeId="$recipe->id" :key="'fav-'.$recipe->id.'-'.Str::uuid()" />
                     </x-slot:favourite>
 
                     <x-slot:recipeTime>
