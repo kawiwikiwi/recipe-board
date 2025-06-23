@@ -239,7 +239,7 @@ new #[Layout('components.layouts.app')] class extends Component {
     @else
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-items-center max-h-full overflow-y-auto gap-30 w-full p-10 pb-5">
             @foreach($recipes as $recipe)
-                <x-recipe-card-layout>
+                <x-recipe-card-layout :recipe="$recipe" :key="'recipe-card-'.$recipe->id">
                     <x-slot:title>
                         {{ $recipe->title }}
                     </x-slot:title>
@@ -252,7 +252,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                     </x-slot:deleteButton>
 
                     <x-slot:favourite>
-                        <livewire:components.favourite-recipe :recipeId="$recipe->id" :key="$recipe->id" />
+                        <livewire:components.favourite-recipe :recipeId="$recipe->id" :key="'fav-'.$recipe->id.'-'.Str::uuid()" />
                     </x-slot:favourite>
 
                     <x-slot:recipeTime>
