@@ -19,12 +19,15 @@ new #[Layout('components.layouts.app')] class extends Component {
     public function mount() {
         $this->user_id = Auth::user()->id;
         $this->recipes = Recipe::where('user_id', $this->user_id)->get();
-        $this->favouriteRecipes = Recipe::whereHas('like', function($query) {
-            $query->where('user_id', $this->user_id);
-        })->get();
-        $this->popularRecipes = Recipe::withCount('like')
-            ->orderBy('like_count', 'desc')
-            ->take(5)
+        $this->favouriteRecipes = Recipe::with('user')
+            ->whereHas('like', function($query) {
+                $query->where('user_id', $this->user_id);
+            })->get();
+
+        $this->popularRecipes = Recipe::with('user') // eager load user for display
+            ->withCount('like') // count likes
+            ->orderBy('like_count', 'desc') // order by like count
+            ->take(5) // limit to 5
             ->get();
 
     }
@@ -202,7 +205,7 @@ new #[Layout('components.layouts.app')] class extends Component {
         <div class="bg-accent max-w-fit px-6 py-3 rounded-br-4xl rounded-tl-2xl">
             <h1 class="text-3xl text-white mr-1 text-shadow-md/50 text-shadow-accent-800"> Popular Recipes </h1>
         </div>
-        @if($recipes->isEmpty())
+        @if($popularRecipes->isEmpty())
             <p class="text-gray-500 p-10">No featured recipes yet.</p>
         @else
             <div class="animate-fade-left grid auto-cols-max grid-flow-col justify-items-center overflow-x-auto gap-30 w-full p-10 pb-5">
