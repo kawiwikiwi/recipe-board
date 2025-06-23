@@ -36,6 +36,8 @@ new class extends Component
             $this->likeCount++;
         }
         $this->isFavorite = !$this->isFavorite;
+
+        $this->dispatch('refreshParentComponent');
     }
 
     
