@@ -53,6 +53,8 @@
     --color-accent-foreground: var(--color-white);
 
     --h-screen-minus-header: calc(100% - 4rem)
+
+    --breakpoint-xs: 30rem;
     
     --text-shadow-inset: 2px 2px 4px rgba(221,112,124,0.5);
 
@@ -64,6 +66,10 @@
         --color-accent: #DD707C;
         --color-accent-content: var(--color-white);
         --color-accent-foreground: var(--color-white);
+
+        --h-screen-minus-header: calc(100% - 4rem)
+
+        --breakpoint-xs: 30rem;
     }
 }
 

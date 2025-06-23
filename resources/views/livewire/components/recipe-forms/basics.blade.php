@@ -13,8 +13,8 @@ new class extends Component
 }?>
 
 <div class="grid grid-cols-1 gap-6">
-    <div class="grid grid-cols-9 gap-5">
-        <flux:input.group class="col-span-7 grid gap-2">
+    <div class="grid grid-cols-2 lg:grid-cols-9 gap-5">
+        <flux:input.group class="col-span-2 lg:col-span-7 grid gap-2">
             <div class="grid gap-2">
                 <flux:label>
                     <flux:icon name="pencil" class="inline-block mr-2 size-5" />
@@ -66,7 +66,7 @@ new class extends Component
         </flux:input.group>
     </div>
 
-    <div class="grid grid-cols-3 gap-10">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <flux:input.group class="grid gap-2">
             <div class="grid gap-2">
                 <flux:label>

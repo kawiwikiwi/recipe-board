@@ -17,7 +17,7 @@ new class extends Component {
         Select the allergens preferences that apply to this recipe. This will help users find recipes that fit their dietary needs.
     </flux:description>
 
-    <div class="w-full grid grid-cols-7 gap-y-2 mt-2 items-start">
+    <div class="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-y-2 mt-2 items-start">
         <flux:checkbox value="celery" label="Celery" wire:model.live="allergyTags" />
         <flux:checkbox value="crustaceans" label="Crustaceans" wire:model.live="allergyTags" />
         <flux:checkbox value="eggs" label="Eggs" wire:model.live="allergyTags" />

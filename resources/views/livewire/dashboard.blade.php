@@ -95,6 +95,9 @@ new #[Layout('components.layouts.app')] class extends Component {
                         </x-slot:title>
 
                         <x-slot:deleteButton>
+                            <span>
+                                Created by {{ $recipe->user->username }}
+                            </span>
                             
                         </x-slot:deleteButton>
 
@@ -154,6 +157,9 @@ new #[Layout('components.layouts.app')] class extends Component {
                         </x-slot:title>
 
                         <x-slot:deleteButton>
+                            <span>
+                                Created by {{ $recipe->user->username }}
+                            </span>
                             
                         </x-slot:deleteButton>
 
@@ -205,6 +211,9 @@ new #[Layout('components.layouts.app')] class extends Component {
                         </x-slot:title>
 
                         <x-slot:deleteButton>
+                            <span>
+                                Created by {{ $recipe->user->username }}
+                            </span>
                             
                         </x-slot:deleteButton>
 

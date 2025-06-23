@@ -28,7 +28,7 @@ new class extends Component {
             Select the cuisine type for this recipe. This will help users find recipes from specific culinary traditions.
         </flux:description>
 
-        <div class="w-full grid grid-cols-6 gap-y-2 mt-2 items-start">
+        <div class="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-2 mt-2 items-start">
             <flux:checkbox value="african" label="African" wire:model.live="cuisineTags" />
             <flux:checkbox value="american" label="American" wire:model.live="cuisineTags" />
             <flux:checkbox value="brazilian" label="Brazilian" wire:model.live="cuisineTags" />

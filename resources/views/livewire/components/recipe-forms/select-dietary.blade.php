@@ -18,7 +18,7 @@ new class extends Component {
         Select the dietary preferences that apply to this recipe. This will help users find recipes that fit their dietary needs.
     </flux:description>
 
-    <div class="w-full grid grid-cols-7 gap-y-2 mt-2">
+    <div class="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-y-2 mt-2">
         <flux:checkbox value="vegetarian" label="Vegetarian" wire:model.live="dietaryTags"/>
         <flux:checkbox value="vegan" label="Vegan" wire:model.live="dietaryTags"/>
         <flux:checkbox value="pescatarian" label="Pescatarian" wire:model.live="dietaryTags"/>

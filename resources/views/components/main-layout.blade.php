@@ -6,9 +6,9 @@
 
             <div class="items-center flex justify-between">
                 <div class="flex items-center justify-center ">
-                    <h1 class="-mb-2 text-[2.75rem] text-shadow-lg text-shadow-accent-700 text-white text-center  font-stretch-ultra-expanded font-bold">{{ $title }}</h1>
+                    <h1 class="-mb-2 text-3xl md:text-[2.75rem] text-shadow-lg text-shadow-accent-700 text-white text-center  font-stretch-ultra-expanded font-bold">{{ $title }}</h1>
                 </div>
-                <div class="flex flex-nowrap gap-3 -mb-10 ">
+                <div class="flex flex-nowrap gap-3 sm:-mb-5  md:-mb-5 lg:-mb-7 ">
                     {{ $headerButtons }}
                 </div>
             </div>
