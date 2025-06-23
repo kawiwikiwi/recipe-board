@@ -66,7 +66,7 @@ new class extends Component {
                         class:input="border-b-0 rounded-b-none text-lg! font-semibold"
                     />
                     <flux:button icon="check-line" aria-label="Save ingredient edit" variant="primary" class="px-6 border-b-0 rounded-b-none text-white" wire:click="saveStep"></flux:button>
-                    <flux:button icon="ban" aria-label="Cancel ingredient edit" variant="danger" class="px-6 border-b-0 rounded-b-none text-white" wire:click="cancelEdit"></flux:button>
+                    <flux:button icon="ban" aria-label="Cancel ingredient edit" variant="danger" class="px-6 border-b-0 rounded-b-none " wire:click="cancelEdit"></flux:button>
                 @else
                     <flux:input
                         wire:model="title"
@@ -75,9 +75,9 @@ new class extends Component {
                         disabled
                         class:input="border-b-0 rounded-b-none text-lg! font-semibold"
                     />
-                    <flux:button icon="pencil" aria-label="Edit ingredient" variant="filled" class="px-6 border-b-0 rounded-b-none text-white" wire:click="editStep"></flux:button>
+                    <flux:button icon="pencil" aria-label="Edit ingredient" variant="filled" class="px-6 border-b-0 rounded-b-none " wire:click="editStep"></flux:button>
                 @endif
-                <flux:button icon="trash-2" aria-label="Remove ingredient" variant="danger" class="px-6 border-b-0 rounded-b-none text-white" wire:click="removeStep"></flux:button>
+                <flux:button icon="trash-2" aria-label="Remove ingredient" variant="danger" class="px-6 border-b-0 rounded-b-none " wire:click="removeStep"></flux:button>
             </flux:input.group>
 
             <flux:separator />
