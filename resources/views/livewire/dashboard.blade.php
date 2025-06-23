@@ -50,6 +50,11 @@ new #[Layout('components.layouts.app')] class extends Component {
     {
         $this->redirect(route('recipes.search', absolute: false), navigate: true);
     }
+
+    public function viewRecipe($recipeId)
+    {
+        $this->redirect(route('recipes.view', ['recipe' => $recipeId]), navigate: true);
+    }
     
 }; 
 ?>

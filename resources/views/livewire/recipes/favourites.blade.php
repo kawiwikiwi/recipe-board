@@ -45,6 +45,12 @@ new #[Layout('components.layouts.app')] class extends Component {
         }
         return null;
     }
+
+    public function viewRecipe($recipeId) {
+
+        $this->redirect(route('recipes.view', ['recipe' => $recipeId]), navigate: true);
+    
+    }
 }; ?>
 
 <div class="flex flex-col gap-2 overflow-y-auto h-[calc(100vh-7.5rem)] bg-zinc-900/50 backdrop-blur-sm ">

@@ -46,6 +46,11 @@ new #[Layout('components.layouts.app')] class extends Component {
         return $this->recipes;
     }
 
+    public function viewRecipe($recipeId)
+    {
+        $this->redirect(route('recipes.view', ['recipe' => $recipeId]), navigate: true);
+    }
+
     public function removeFilters()
     {
         $this->allergyTags = [];
@@ -87,8 +92,8 @@ new #[Layout('components.layouts.app')] class extends Component {
 }; 
 ?>
 
-<div class="flex flex-col gap-5 overflow-y-auto h-[calc(100vh-7.5rem)] bg-zinc-900/50 backdrop-blur-sm ">
-    <div class="grid grid-cols-1 py-2 items-center ">
+<div class="flex flex-col gap-5 overflow-y-auto h-[calc(100vh-7.5rem)] bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-alternate-700/50">
+    <div class="grid grid-cols-1 items-center ">
         <div class="relative">
             <div class="absolute top-0 left-0 bg-accent max-w-fit px-6 py-3 max-h-14 rounded-br-4xl rounded-tl-2xl">
                 <h1 class="text-3xl text-white mr-1 text-shadow-md/50 text-shadow-accent-800"> Recipes </h1>

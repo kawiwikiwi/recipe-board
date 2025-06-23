@@ -61,6 +61,6 @@ class User extends Authenticatable
 
     public function recipes()
     {
-        return $this->belongsTo(Recipe::class);
+        return $this->hasMany(Recipe::class);
     }
 }
