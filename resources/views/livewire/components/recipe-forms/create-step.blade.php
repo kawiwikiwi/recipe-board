@@ -44,7 +44,7 @@ new class extends Component {
                     :placeholder="__('Title')"
                     class:input="border-b-0 rounded-b-none text-lg! font-semibold"
                 />
-                <flux:button icon="plus" variant="primary" class="px-6 border-b-0 rounded-b-none text-white" wire:click="addStep"></flux:button>
+                <flux:button icon="plus" aria-label="Add ingredient" variant="primary" class="px-6 border-b-0 rounded-b-none text-white" wire:click="addStep"></flux:button>
             </flux:input.group>
 
             <flux:separator />

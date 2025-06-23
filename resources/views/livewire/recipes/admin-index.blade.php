@@ -13,12 +13,12 @@ new #[Layout('components.layouts.app')] class extends Component {
 
     public function render(): mixed
     {
-        return view('livewire.recipes.index');
+        return view('livewire.recipes.admin-index');
     }
 
     public function mount() {
         $this->user_id = Auth::user()->id;
-        $this->recipes = Recipe::where('user_id', $this->user_id)->get();
+        $this->recipes = Recipe::all()->where('is_published', true);
 
 
     }
@@ -57,7 +57,7 @@ new #[Layout('components.layouts.app')] class extends Component {
 
             $recipe->delete();
 
-            $this->recipes = Recipe::where('user_id', $this->user_id)->get();
+            $this->recipes = Recipe::all()->where('is_published', true);
 
             $this->closeModal();
         }
@@ -68,7 +68,7 @@ new #[Layout('components.layouts.app')] class extends Component {
         if ($recipe) {
             $recipe->is_published = true;
             $recipe->save();
-            $this->recipes = Recipe::where('user_id', $this->user_id)->get();
+            $this->recipes = Recipe::all()->where('is_published', true);
             session()->flash('message', 'Recipe published successfully.');
         } else {
             session()->flash('error', 'Recipe not found.');
@@ -80,7 +80,7 @@ new #[Layout('components.layouts.app')] class extends Component {
         if ($recipe) {
             $recipe->is_published = false;
             $recipe->save();
-            $this->recipes = Recipe::where('user_id', $this->user_id)->get();
+            $this->recipes = Recipe::all()->where('is_published', true);
             session()->flash('message', 'Recipe unpublished successfully.');
         } else {
             session()->flash('error', 'Recipe not found.');
@@ -106,24 +106,23 @@ new #[Layout('components.layouts.app')] class extends Component {
     }
 }; ?>
 
-<x-main-layout title="My Recipes">
+<x-main-layout title="Admin View - Recipes">
     <x-slot:backButton>
         <flux:button 
             wire:click="redirectToDashboard"
             icon="arrow-uturn-left" 
             variant="ghost" 
-            class="absolute! left-0! top-0! py-5! px-7! h-12! text-white! inset-shadow-md bg-accent-700/50! hover:bg-[color-mix(in_oklab,_var(--color-accent-700),_transparent_10%)]! rounded-bl-none rounded-tr-none rounded-br-3xl rounded-tl-2xl!"
+            aria-label="Back to Dashboard"
+            class="absolute! left-0! top-0! py-5! px-7! text-white! h-12! inset-shadow-md bg-accent-700/50! hover:bg-[color-mix(in_oklab,_var(--color-accent-700),_transparent_10%)]! rounded-bl-none rounded-tr-none rounded-br-3xl rounded-tl-2xl!"
         >
         </flux:button>
     </x-slot:backButton>
     <x-slot:headerButtons>
-        <flux:button icon="wand-sparkles" class="inset-shadow-sm/80! text-white! inset-shadow-alternate-800! rounded-b-none! text-shadow-md! border-none! bg-alternate-600! hover:bg-[color-mix(in_oklab,_var(--color-alternate-700),_transparent_10%)]! h-15!" wire:click="redirectToAddRecipe">
-            Add New Recipe
-        </flux:button>
+        
     </x-slot:headerButtons>
 
     <x-slot:content>
-        <flux:modal name="delete-recipe" class="border-2 border-accent! min-w-[22rem]">
+        <flux:modal name="delete-recipe" aria-label="Delete recipe" class="border-2 border-accent! min-w-[22rem]">
             <div class="space-y-6">
                 <div>
                     <flux:heading size="lg">Are you sure you want to delete this recipe?</flux:heading>
@@ -151,13 +150,15 @@ new #[Layout('components.layouts.app')] class extends Component {
                 <x-recipe-card-layout>
                     <x-slot:title>
                         {{ $recipe->title }}
+                        <flux:text class="text-sm text-zinc-500 dark:text-white/70">
+                            {{ $recipe->user->username ?? 'Unknown User' }}
+                        </flux:text>
                     </x-slot:title>
 
                     <x-slot:deleteButton>
                         <flux:button 
-                            class="group h-10! w-10! bg-transparent! border-none! shadow-none!" 
+                            class="group h-10! w-10! bg-transparent! border-none!" 
                             wire:click="showModal({{ $recipe->id }})"
-                            aria-label="Delete Recipe"
                         >
                             <flux:icon name="trash-2" class="h-7 w-7 text-zinc-500 dark:text-white/70 group-hover:text-red-400! dark:group-hover:text-red-400!" />
                         </flux:button>
@@ -202,7 +203,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                                 <flux:button
                                     size="sm"
                                     icon:trailing="clipboard-check"
-                                    class="rounded-r-full bg-accent! text-white!  border-l-none! w-25! "
+                                    class="rounded-r-full bg-accent! text-white! border-l-none! w-25! "
                                     wire:click="publishRecipe({{ $recipe->id }})"
                                 >
                                     Publish 
@@ -217,4 +218,3 @@ new #[Layout('components.layouts.app')] class extends Component {
     </x-slot:content>
 
 </x-main-layout>
-

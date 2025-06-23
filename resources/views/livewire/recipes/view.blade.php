@@ -62,12 +62,12 @@ new #[Layout('components.layouts.app')] class extends Component {
     </x-slot:backButton>
 
     <x-slot:headerButtons >
-        <div class="flex gap-2 bg-accent-600 px-4 py-4 rounded-t-lg inset-shadow-sm inset-shadow-accent-700">
+        <div class="flex gap-2 bg-accent-600 px-4 py-4 text-white rounded-t-lg inset-shadow-sm inset-shadow-accent-700">
             <h1 class="text-xl font-semibold">Makes</h1>
             <flux:separator vertical />
             <p class="text-xl font-semibold">{{ $recipe->makes }}</p>
         </div>
-        <div class="flex gap-2 bg-alternate-600 px-4 py-4 rounded-t-lg inset-shadow-sm inset-shadow-alternate-700">
+        <div class="flex gap-2 bg-alternate-600 px-4 py-4 text-white rounded-t-lg inset-shadow-sm inset-shadow-alternate-700">
             <h1 class="text-xl font-semibold">Serves</h1>
             <flux:separator vertical />
             <p class="text-xl font-semibold">{{ $recipe->serves }}</p>

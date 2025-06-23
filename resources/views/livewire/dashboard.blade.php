@@ -81,6 +81,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                 icon="chevron-down"
                 variant="primary"
                 wire:click="$toggle('showMyRecipes')"
+                aria-label="Toggle My Recipes"
                 class="px-7! h-15! rounded-tr-2xl! rounded-bl-2xl! rounded-tl-none! rounded-br-none!"
             />
         </div>
@@ -143,6 +144,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                 icon="chevron-down"
                 variant="primary"
                 wire:click="$toggle('showFavourites')"
+                aria-label="Toggle Favourites"
                 class="px-7! h-15! rounded-tr-2xl! rounded-bl-2xl! rounded-tl-none! rounded-br-none!"
             />
         </div>

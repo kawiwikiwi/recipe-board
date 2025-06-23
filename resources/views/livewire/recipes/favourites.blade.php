@@ -53,8 +53,8 @@ new #[Layout('components.layouts.app')] class extends Component {
     }
 }; ?>
 
-<div class="flex flex-col gap-2 overflow-y-auto h-[calc(100vh-7.5rem)] bg-zinc-900/50 backdrop-blur-sm ">
-    <div class="grid grid-cols-1 py-2 items-center ">
+<div class="flex flex-col gap-2 overflow-y-auto h-[calc(100vh-7.5rem)] bg-white/80 dark:bg-zinc-900/50 backdrop-blur-sm rounded-2xl shadow-lg">
+    <div class="grid grid-cols-1 items-center ">
         <div class=" bg-accent max-w-fit px-6 py-3 max-h-14 rounded-br-4xl rounded-tl-2xl">
             <h1 class="text-3xl text-white mr-1 text-shadow-md/50 text-shadow-accent-800"> Favourite Recipes </h1>
         </div>

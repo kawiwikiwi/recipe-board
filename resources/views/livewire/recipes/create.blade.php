@@ -149,15 +149,16 @@ new #[Layout('components.layouts.app')] class extends Component {
             wire:click="showModal"
             icon="arrow-uturn-left" 
             variant="ghost" 
-            class="absolute! left-0! top-0! py-5! px-7! h-12! inset-shadow-md bg-accent-700/50! hover:bg-[color-mix(in_oklab,_var(--color-accent-700),_transparent_10%)]! rounded-bl-none rounded-tr-none rounded-br-3xl rounded-tl-2xl!"
+            aria-label="Go Back"
+            class="absolute! text-white! left-0! top-0! py-5! px-7! h-12! inset-shadow-md bg-accent-700/50! hover:bg-[color-mix(in_oklab,_var(--color-accent-700),_transparent_10%)]! rounded-bl-none rounded-tr-none rounded-br-3xl rounded-tl-2xl!"
         >
         </flux:button>
     </x-slot:backButton>
     <x-slot:headerButtons>
-        <flux:button icon="save" type="submit" class="inset-shadow-sm/50! inset-shadow-accent-800! rounded-b-none! text-shadow-md! border-none! bg-accent-700/50! hover:bg-[color-mix(in_oklab,_var(--color-accent-700),_transparent_10%)]! h-15!" wire:click="saveRecipe">
+        <flux:button icon="save" type="submit" class="inset-shadow-sm/50! text-white! inset-shadow-accent-800! rounded-b-none! text-shadow-md! border-none! bg-accent-700/50! hover:bg-[color-mix(in_oklab,_var(--color-accent-700),_transparent_10%)]! h-15!" wire:click="saveRecipe">
             Save
         </flux:button>
-        <flux:button icon="wand-sparkles" class="inset-shadow-sm/80! inset-shadow-alternate-800! rounded-b-none! text-shadow-md! border-none! bg-alternate-600! hover:bg-[color-mix(in_oklab,_var(--color-alternate-700),_transparent_10%)]! h-15!" wire:click="publishRecipe">
+        <flux:button icon="wand-sparkles" class="inset-shadow-sm/80! text-white! inset-shadow-alternate-800! rounded-b-none! text-shadow-md! border-none! bg-alternate-600! hover:bg-[color-mix(in_oklab,_var(--color-alternate-700),_transparent_10%)]! h-15!" wire:click="publishRecipe">
             Publish
         </flux:button>
     </x-slot:headerButtons>

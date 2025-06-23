@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Middleware\Admin;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,6 +11,11 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Volt::route('dashboard', 'dashboard')->name('dashboard');
     Volt::route('recipes', 'recipes.search')->name('recipes.search');
+});
+
+Route::middleware(['auth', Admin::class])->group(function () {
+    Volt::route('admin/recipes', 'recipes.admin-index')->name('recipes.admin-index');
+    
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

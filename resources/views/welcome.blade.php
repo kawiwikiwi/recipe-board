@@ -69,13 +69,13 @@
             @endif
         </header>
         <div class="">
-            <main class='grid grid-cols-8 gap-4 px-12 py-12'>
+            <main class='animate-fade-up grid grid-cols-8 gap-4 px-12 py-12'>
                 <div class='grid-container col-start-1 col-span-3 row-span-2'>
                     <div class='dark:hidden'> 
-                        <img src='/assets/title.png' alt="title" class='' />
+                        <img src='/assets/title.png' alt="title image The Recipe Board" class='' />
                     </div>
                     <div class='hidden dark:block'> 
-                        <img src='/assets/titleDark.png' alt="title" class='' />
+                        <img src='/assets/titleDark.png' alt="title image The Recipe Board" class='' />
                     </div>
                     <div class="text-[#687339] font-semibold">
                         <h2 class="mt-6 text-5xl">Where Your <span class="text-[#DD707C]">Inspiration</span> Lives.</h2>
@@ -86,7 +86,7 @@
                 </div>
                 <div class='grid-container col-end-9 col-span-5'>
                     <div class='max-w-[1000px] ml-auto'>
-                        <img src="/assets/plate.png" alt="plate" class="" />
+                        <img src="/assets/plate.png" alt="an image of a plate of food" class="" />
                     </div>
                 </div>
             </main>

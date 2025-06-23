@@ -57,7 +57,7 @@ new class extends Component {
                 :placeholder="__('kg')"
                 class="border-l-none!"
             />
-            <flux:button class="px-6 text-white" icon="plus" variant="primary" wire:click="addIngredient"></flux:button>
+            <flux:button class="px-6 text-white" icon="plus" aria-label="Add step" variant="primary" wire:click="addIngredient"></flux:button>
         </flux:input.group>
     </flux:input.group>
 </flux:field>

@@ -73,9 +73,9 @@ new class extends Component
                 wire:model="editUnit"
                 required
                 />
-                <flux:button class="px-6" variant="primary" icon="check-line" wire:click="saveEdit"></flux:button>
-                <flux:button class="px-6" variant="danger" icon="ban" wire:click="cancelEdit"></flux:button>
-                <flux:button class="px-6" variant="danger" icon="trash-2" wire:click="remove"></flux:button>
+                <flux:button class="px-6" variant="primary" aria-label="Save edit" icon="check-line" wire:click="saveEdit"></flux:button>
+                <flux:button class="px-6" variant="danger" aria-label="Cancel edit" icon="ban" wire:click="cancelEdit"></flux:button>
+                <flux:button class="px-6" variant="danger" aria-label="Remove Step" icon="trash-2" wire:click="remove"></flux:button>
             </flux:input.group>
         </flux:input.group>
     @else
@@ -99,8 +99,8 @@ new class extends Component
                     required
                     disabled
                 />
-                <flux:button class="px-6" variant="filled" icon="pencil" wire:click="edit"></flux:button>
-                <flux:button class="px-6" variant="danger" icon="trash-2" wire:click="remove"></flux:button>
+                <flux:button class="px-6" variant="filled" aria-label="Edit Step" icon="pencil" wire:click="edit"></flux:button>
+                <flux:button class="px-6" variant="danger" aria-label="Remove Step" icon="trash-2" wire:click="remove"></flux:button>
             </flux:input.group>
         </flux:input.group>
     @endif

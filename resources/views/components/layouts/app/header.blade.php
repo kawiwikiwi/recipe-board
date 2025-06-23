@@ -29,7 +29,7 @@
                         :label="__('Search')" />
                 </flux:tooltip>
 
-                <flux:tooltip :content="__('Saved Recipes')" position="bottom">
+                <flux:tooltip :content="__('Favourite Recipes')" position="bottom">
                     <flux:navbar.item
                         class="h-10 max-lg:hidden [&>div>svg]:size-5"
                         icon="heart"
@@ -48,6 +48,17 @@
                         label="My Recipes"
                     />
                 </flux:tooltip>
+
+                @if(auth()->user()->is_admin)
+                    <flux:tooltip :content="__('Admin Recipes')" position="bottom">
+                        <flux:navbar.item 
+                            class="!h-10 [&>div>svg]:size-5" 
+                            icon="shield-check" 
+                            :href="route('recipes.admin-index')"
+                            wire:navigate 
+                            :label="__('Admin Recipes')" />
+                    </flux:tooltip>
+                @endif
             </flux:navbar>
 
             <!-- Desktop User Menu -->

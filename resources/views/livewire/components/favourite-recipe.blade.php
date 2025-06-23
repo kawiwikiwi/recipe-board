@@ -46,9 +46,10 @@ new class extends Component
 
 <div class="flex flex-row-reverse items-center justify-center">
     <flux:button
-        class="group h-10! w-10! p-4! bg-transparent! border-none!"
+        class="group h-10! w-10! p-4! bg-transparent! border-none! shadow-none!"
         wire:click="toggleFavorite"
         loading="false"
+        aria-label="Toggle Favorite"
     >
         @if($isFavorite)
             <flux:icon name="heart" variant="solid" class="text-accent-700 group-hover:text-accent-500 h-8 w-8 animate-jump-in animate-fill-both" />

@@ -92,7 +92,7 @@ new #[Layout('components.layouts.app')] class extends Component {
 }; 
 ?>
 
-<div class="flex flex-col gap-5 overflow-y-auto h-[calc(100vh-7.5rem)] bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-alternate-700/50">
+<div class="flex flex-col gap-5 overflow-y-auto h-[calc(100vh-7.5rem)] bg-white/80 dark:bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-alternate-600/20">
     <div class="grid grid-cols-1 items-center ">
         <div class="relative">
             <div class="absolute top-0 left-0 bg-accent max-w-fit px-6 py-3 max-h-14 rounded-br-4xl rounded-tl-2xl">
@@ -108,7 +108,7 @@ new #[Layout('components.layouts.app')] class extends Component {
                     type="search"
                     icon="magnifying-glass"
                     class=""
-                    class:input="bg-zinc-900! h-12!"
+                    class:input="dark:bg-zinc-900! h-12!"
                     wire:model.live="search"
                     wire:keydown.enter="getRecipes"
                 >
@@ -128,13 +128,14 @@ new #[Layout('components.layouts.app')] class extends Component {
                 variant="filled"
                 icon:variant="{{ $toggleFilterIcon }}"
                 wire:click="toggleFilter" 
-                class="bg-zinc-900! h-12! px-5! border-alternate-700/50!"
+                aria-label="Toggle filters"
+                class="dark:bg-zinc-900! h-12! px-5! border-alternate-700/50!"
             />
         </div>
 
         <div 
             wire:show="showFilters"
-            class="grid grid-cols-[2fr_min-content_1.5fr] gap-2 items-start mt-2 p-5 bg-zinc-900/50 backdrop-blur-sm border-b border-zinc-300/30"
+            class="grid grid-cols-[2fr_min-content_1.5fr] gap-2 items-start mt-2 p-5 bg-white/80 dark:bg-zinc-900/50 backdrop-blur-sm border-b border-zinc-300/30"
         >
             <div class="w-full grid grid-cols-[max-content_max-content_max-content_max-content_max-content] gap-2 justify-between mt-2">
                 <flux:heading class="text-xl! col-span-5!">
@@ -211,7 +212,8 @@ new #[Layout('components.layouts.app')] class extends Component {
                         variant="filled"
                         size="xs"
                         wire:click="removeFilters"
-                        class="bg-zinc-900! h-10! px-3! text-sm! border-none! py-2!"
+                        aria-label="Clear filters"
+                        class="dark:bg-zinc-900! h-10! px-3! text-sm! border-none! py-2!"
                     >
                         Clear
                     </flux:button>
@@ -220,7 +222,8 @@ new #[Layout('components.layouts.app')] class extends Component {
                         variant="primary"
                         size="xs"
                         wire:click="getRecipes"
-                        class="h-10! px-3! text-sm! border-alternate-700/50! py-2!"
+                        aria-label="Apply filters"
+                        class="h-10! px-3! text-sm! dark:border-alternate-700/50! py-2!"
                     >
                         Apply
                     </flux:button>
