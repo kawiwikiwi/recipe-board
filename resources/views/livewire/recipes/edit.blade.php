@@ -250,6 +250,15 @@ new #[Layout('components.layouts.app')] class extends Component {
         </flux:modal>
 
         <form class="mx-14 grid grid-cols-1 pt-10 gap-10 flex-1 overflow-y-scroll ">
+            @if ($errors->any())
+                <div class="mb-4 rounded bg-red-100 border border-red-400 text-red-700 px-4 py-3">
+                    <ul class="">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <x-create-recipe-card title="Recipe Basics">
                 <livewire:components.recipe-forms.basics wire:model="basics" />
